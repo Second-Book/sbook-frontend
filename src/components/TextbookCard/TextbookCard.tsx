@@ -12,7 +12,7 @@ interface TextbookCardProps {
 const TextbookCard = (props: TextbookCardProps) => {
     return (
         <div className={`${TextbookCardStyle.textbookCard} ${TextbookCardStyle.relativeModule} flex flex-col gap-5 p-5 bg-white rounded shadow-md relative`}>
-            <Image src={"http://127.0.0.1:8000" + props.textbook.image.preview} width={240} height={312} alt={props.textbook.title} className="object-contain w-[240px] h-[312px]"/>
+            <Image src={props.textbook.image.preview} width={240} height={312} alt={props.textbook.title} className="object-contain w-[240px] h-[312px]"/>
             <Link href={`/textbook/${props.textbook.id}`} className={`${TextbookCardStyle.detailsButton} absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
                 Details
             </Link>
