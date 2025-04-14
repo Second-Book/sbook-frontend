@@ -13,10 +13,10 @@ const Navbar = () => {
 	const { isAuthenticated, logout } = useUserStore((state) => state)
 
 	return (
-		<header className="flex sticky top-0 z-2 items-center w-full h-24 text-xl text-black bg-white px-20 border-b gap-6 border-b-[#DDE1E6]">
+		<header className="flex sticky top-0 z-2 items-center w-full h-24 text-xl text-black bg-white px-20 border-b gap-6 border-b-(--cool-gray-20)">
 			<Link
 				href="/textbooks"
-				className="sm:text-2xl font-bold leading-none text-[#697077] text-nowrap">
+				className="sm:text-2xl font-bold leading-none text-(--cool-gray-60) text-nowrap">
 				<FontAwesomeIcon
 					icon={faBookOpenReader}
 					className="text-rose-800 mr-1"
@@ -24,10 +24,10 @@ const Navbar = () => {
 				Second Book
 			</Link>
 			<Form action="/textbooks" className="grow">
-				<div className="w-full h-12 flex items-center bg-[#F2F4F8] rounded-xl border-b border-b-[#C1C7CD] text-lg pl-4 gap-2 focus-within:outline">
+				<div className="w-full h-12 flex items-center bg-[#F2F4F8] rounded-xl border-b border-b-(--cool-gray-30) text-lg pl-4 gap-2 focus-within:outline">
 					<FontAwesomeIcon
 						icon={faMagnifyingGlass}
-						className="text-[#697077]"
+						className="text-(--cool-gray-60)"
 					/>
 					<input
 						type="text"
@@ -40,28 +40,28 @@ const Navbar = () => {
 			{!isAuthenticated && (
 				<Link
 					href="/login"
-					className="focus:outline-none focus:ring-2 focus:ring-white font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-[#001D6C] text-lg text-[#001D6C]">
+					className="font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-(--primary-90) text-lg text-(--primary-90)">
 					Sign In
 				</Link>
 			)}
 			{!isAuthenticated && (
 				<Link
 					href="/signup"
-					className="focus:outline-none focus:ring-2 focus:ring-white font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-[#001D6C] text-lg text-[#001D6C]">
+					className="font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-(--primary-90) text-lg text-(--primary-90)">
 					Sign Up
 				</Link>
 			)}
 			{isAuthenticated && (
 				<Link
 					href="/profile"
-					className="focus:outline-none focus:ring-2 focus:ring-white font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-[#001D6C] text-lg text-[#001D6C]">
+					className="font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-(--primary-90) text-lg text-(--primary-90)">
 					Profile
 				</Link>
 			)}
 			{isAuthenticated && (
 				<button
 					onClick={() => logout()}
-					className="focus:outline-none focus:ring-2 focus:ring-white font-medium cursor-pointer relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-[#001D6C] text-lg text-[#001D6C]">
+					className="font-medium cursor-pointer relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-(--primary-90) text-lg text-(--primary-90)">
 					Logout
 				</button>
 			)}
