@@ -2,7 +2,12 @@ import type { Metadata, Viewport } from "next"
 import { Poppins, Roboto } from "next/font/google"
 import "./globals.css"
 import UserStoreProvider from "@/providers/UserStoreProvider"
+import "@fortawesome/fontawesome-svg-core/styles.css"
+import { config } from "@fortawesome/fontawesome-svg-core"
 import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
+
+config.autoAddCss = false
 
 const roboto = Roboto({
 	variable: "--font-roboto",
@@ -34,8 +39,11 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${roboto.variable} ${poppins.variable}`}>
 				<UserStoreProvider>
-					<Navbar />
-					{children}
+					<main className="w-full min-h-[100vh] flex flex-col">
+						<Navbar />
+						<section className="grow">{children}</section>
+						<Footer />
+					</main>
 				</UserStoreProvider>
 			</body>
 		</html>

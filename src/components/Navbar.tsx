@@ -13,7 +13,7 @@ const Navbar = () => {
 	const { isAuthenticated, logout } = useUserStore((state) => state)
 
 	return (
-		<header className="flex sticky top-0 z-2 items-center w-full h-24 text-xl text-black bg-white px-20 border-b gap-6 border-b-(--cool-gray-20)">
+		<nav className="flex sticky top-0 z-2 items-center w-full h-24 text-black bg-white px-(--default-margin) border-b gap-6 border-b-(--cool-gray-20)">
 			<Link
 				href="/textbooks"
 				className="sm:text-2xl font-bold leading-none text-(--cool-gray-60) text-nowrap">
@@ -67,10 +67,10 @@ const Navbar = () => {
 			)}
 			<Link
 				href={isAuthenticated ? "/new-textbook" : "/login"}
-				className="px-8 py-3 bg-rose-800 text-white rounded-xl font-(family-name:--font-poppins) font-light text-nowrap">
+				className="px-8 py-3 bg-rose-800 text-white text-xl rounded-xl font-(family-name:--font-poppins) font-light text-nowrap">
 				Sell a book
 			</Link>
-		</header>
+		</nav>
 	)
 }
 

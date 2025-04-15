@@ -9,6 +9,7 @@
 	--cool-gray-90: #21272a;
 	--primary-90: #001d6c;
 	--default-alert: #da1e28;
+	--default-margin: calc(var(--spacing) * 20);
 }
 
 body {
