@@ -13,7 +13,7 @@ const Footer = () => {
 	return (
 		<footer className="w-full h-64 bg-(--cool-gray-60) px-(--default-margin) flex flex-col justify-evenly">
 			<div className="flex items-center justify-between">
-				<div className="text-2xl text-(--cool-gray-30) font-bold">
+				<div className="text-2xl text-(--cool-gray-30) font-bold text-nowrap">
 					<FontAwesomeIcon
 						icon={faBookOpenReader}
 						className="text-rose-800 mr-1"
