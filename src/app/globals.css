@@ -10,6 +10,7 @@
 	--primary-90: #001d6c;
 	--default-alert: #da1e28;
 	--default-margin: calc(var(--spacing) * 20);
+	--navbar-height: calc(var(--spacing) * 24);
 }
 
 body {

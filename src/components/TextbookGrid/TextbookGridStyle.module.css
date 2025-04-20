@@ -1,7 +1,6 @@
 .textbookGrid {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 23%));
-    justify-content: space-between;
-    grid-gap: 20px;
+  display: grid;
+  width: 100%;
+  grid-gap: calc(var(--spacing) * 4);
+  grid-template-columns: repeat(4, 1fr);
 }
