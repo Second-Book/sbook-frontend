@@ -1,6 +1,16 @@
 .textbookGrid {
+  --grid-max-cols: 4;
+  --grid-gap-var: calc(var(--spacing) * 4);
+  --grid-gap-col-width: calc(
+    (100% - var(--grid-gap-var) * (var(--grid-max-cols) - 1)) /
+      var(--grid-max-cols)
+  );
+  --min-grid-item-width: min(100%, 220px);
   display: grid;
   width: 100%;
-  grid-gap: calc(var(--spacing) * 4);
-  grid-template-columns: repeat(4, 1fr);
+  grid-gap: var(--grid-gap-var);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(var(--min-grid-item-width), var(--grid-gap-col-width)), 1fr)
+  );
 }

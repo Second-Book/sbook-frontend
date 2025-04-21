@@ -10,9 +10,9 @@ interface TextbookGridProps {
 
 const TextbookGrid = (props: TextbookGridProps) => {
   return (
-    <section className="relative">
+    <section className="grow relative">
       {props.children}
-      <div className="w-full flex gap-4 justify-between flex-wrap">
+      <div className={`${TextbookGridStyle.textbookGrid}`}>
         {props.textbooks.map((textbook) => (
           <TextbookCard key={textbook.id} textbook={textbook} />
         ))}

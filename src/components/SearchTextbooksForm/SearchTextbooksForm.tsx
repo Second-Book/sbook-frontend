@@ -15,10 +15,10 @@ const SearchTextbooksForm = (props: SearchTextbooksFormProps) => {
   return (
     <Form
       action={`/textbooks`}
-      className="w-full pl-(--default-margin) pr-70 flex flex-col gap-3">
+      className="w-full px-3 sm:px-(--default-margin) 2xl:pr-70 flex flex-col gap-3">
       <input type="hidden" name="query" value={props.query} />
       <div className="flex gap-8">
-        <div className=" hidden md:flex flex-col gap-24 bg-[#F2F4F8] px-4 py-6 w-86 self-start rounded-xl font-(family-name:--font-poppins) font-lg sticky top-[calc(var(--navbar-height)+(var(--spacing)*4))]">
+        <div className=" hidden lg:flex flex-col gap-24 bg-[#F2F4F8] px-4 py-6 w-86 self-start rounded-xl font-(family-name:--font-poppins) font-lg sticky top-[calc(var(--navbar-height)+(var(--spacing)*4))]">
           <div className="flex flex-col gap-6">
             <div>
               <label htmlFor="grade">Grade</label>
@@ -67,7 +67,7 @@ const SearchTextbooksForm = (props: SearchTextbooksFormProps) => {
           </div>
         </div>
         <TextbookGrid textbooks={props.textbooks}>
-          <div className="absolute bottom-[calc(100%+var(--spacing)*2)] right-0 self-end flex gap-4 items-center text-lg">
+          <div className="absolute bottom-[calc(100%+var(--spacing)*4)] right-0 self-end flex gap-4 items-center text-lg">
             <label htmlFor="sort">Sort</label>
             <select
               name="sort"

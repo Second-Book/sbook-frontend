@@ -13,8 +13,8 @@ const TextbookCard = ({ textbook }: TextbookCardProps) => {
   return (
     <Link
       href={`/textbook/${textbook.id}`}
-      className={`w-70 shrink-0 flex-col bg-white rounded shadow-md relative rounded-xl overflow-hidden border border-[#DDE1E6]`}>
-      <div className="w-full h-70 relative">
+      className={`bg-white rounded shadow-md relative rounded-xl overflow-hidden border border-[#DDE1E6]`}>
+      <div className="w-full aspect-square relative">
         <Image
           src={textbook.image.preview}
           fill
