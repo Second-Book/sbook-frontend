@@ -5,7 +5,7 @@
     (100% - var(--grid-gap-var) * (var(--grid-max-cols) - 1)) /
       var(--grid-max-cols)
   );
-  --min-grid-item-width: min(100%, 220px);
+  --min-grid-item-width: min(40%, 220px);
   display: grid;
   width: 100%;
   grid-gap: var(--grid-gap-var);

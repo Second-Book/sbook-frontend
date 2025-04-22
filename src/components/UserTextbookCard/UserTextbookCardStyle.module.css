@@ -1,8 +1,0 @@
-.textbookItem {
-    background: white;
-    transition: all 0.2s;
-  }
-
-  .textbookItem:hover {
-    transform: translateY(-2px);
-  }

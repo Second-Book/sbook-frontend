@@ -13,8 +13,8 @@ const TextbookGrid = (props: TextbookGridProps) => {
     <section className="grow relative">
       {props.children}
       <div className={`${TextbookGridStyle.textbookGrid}`}>
-        {props.textbooks.map((textbook) => (
-          <TextbookCard key={textbook.id} textbook={textbook} />
+        {props.textbooks.map((textbook, index) => (
+          <TextbookCard key={textbook.id} textbook={textbook} index={index} />
         ))}
       </div>
     </section>

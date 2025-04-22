@@ -4,7 +4,10 @@ import { TextbookType } from "@/utils/types";
 import TextbookGrid from "../TextbookGrid/TextbookGrid";
 import Form from "next/form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDownShortWide,
+  faChevronDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface SearchTextbooksFormProps {
   textbooks: TextbookType[];
@@ -15,10 +18,10 @@ const SearchTextbooksForm = (props: SearchTextbooksFormProps) => {
   return (
     <Form
       action={`/textbooks`}
-      className="w-full px-3 sm:px-(--default-margin) 2xl:pr-70 flex flex-col gap-3">
+      className="w-full px-(--default-margin-sm) sm:px-(--default-margin-lg) 2xl:pr-70 flex flex-col gap-3">
       <input type="hidden" name="query" value={props.query} />
       <div className="flex gap-8">
-        <div className=" hidden lg:flex flex-col gap-24 bg-[#F2F4F8] px-4 py-6 w-86 self-start rounded-xl font-(family-name:--font-poppins) font-lg sticky top-[calc(var(--navbar-height)+(var(--spacing)*4))]">
+        <div className="hidden lg:flex flex-col gap-24 bg-[#F2F4F8] px-4 py-6 w-86 self-start rounded-xl font-(family-name:--font-poppins) font-lg sticky top-[calc(var(--navbar-height)+(var(--spacing)*4))]">
           <div className="flex flex-col gap-6">
             <div>
               <label htmlFor="grade">Grade</label>
@@ -81,7 +84,12 @@ const SearchTextbooksForm = (props: SearchTextbooksFormProps) => {
             </select>
             <FontAwesomeIcon
               icon={faChevronDown}
-              className="absolute right-2"
+              className="!hidden lg:!inline-block absolute right-2"
+              pointerEvents={"none"}
+            />
+            <FontAwesomeIcon
+              icon={faArrowDownShortWide}
+              className="absolute right-2 lg:!hidden"
               pointerEvents={"none"}
             />
           </div>
