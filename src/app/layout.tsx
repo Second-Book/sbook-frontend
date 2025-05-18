@@ -38,14 +38,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} ${poppins.variable}`}>
+      <body
+        className={`${roboto.variable} ${poppins.variable} min-h-[100vh] flex flex-col`}>
         <UserStoreProvider>
-          <main className="w-full min-h-[100vh] flex flex-col">
-            <NavbarDesktop />
-            <NavbarMobile />
-            <section className="grow">{children}</section>
-            <Footer />
-          </main>
+          <NavbarDesktop />
+          <NavbarMobile />
+          <main className="grow bg-[#FBFBFB]">{children}</main>
+          <Footer />
         </UserStoreProvider>
       </body>
     </html>

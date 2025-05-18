@@ -1,5 +1,5 @@
 import { TextbookType } from "@/utils/types";
-import formatDate from "@/utils/formatDate";
+import formatDate from "@/utils/functions";
 
 interface UserTextbookCardProps {
   textbook: TextbookType;

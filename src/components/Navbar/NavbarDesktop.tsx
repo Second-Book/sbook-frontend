@@ -40,7 +40,7 @@ const Navbar = () => {
       )}
       {isAuthenticated && (
         <Link
-          href="/profile"
+          href="/profile/my-listings"
           className="font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-(--primary-90) text-lg text-(--primary-90)">
           Profile
         </Link>

@@ -1,12 +1,11 @@
 "use client";
 
 import useUserStore from "@/hooks/useUserStore";
-import UserTextbookGridStyle from "./UserTextbookGridStyle.module.css";
 import { TextbookType } from "@/utils/types";
 import { useEffect, useState } from "react";
 import apiFunctions from "@/services/TextbookService";
-import UserTextbookCard from "../TextbookGrid/UserTextbookCard";
-import CustomError from "../CustomError";
+import UserTextbookCard from "./TextbookGrid/UserTextbookCard";
+import CustomError from "./CustomError";
 
 const UserTextbookGrid = () => {
   const { user, isAuthenticated } = useUserStore((state) => state);
@@ -32,9 +31,9 @@ const UserTextbookGrid = () => {
   }, [isAuthenticated, user]);
 
   return (
-    <div className={`${UserTextbookGridStyle.textbooksSection} mt-8`}>
+    <div className={`mt-8`}>
       <h3 className="text-lg font-medium text-gray-700">My Textbooks</h3>
-      <div className={`${UserTextbookGridStyle.textbooksList} mt-4 space-y-4`}>
+      <div className={`mt-4 space-y-4`}>
         {error ? (
           <CustomError
             text="Unable to fetch user textbooks"
