@@ -1,6 +1,10 @@
 const Messages = () => {
   return (
-    <div className="w-full bg-white rounded-lg shadow-md p-6">Messages</div>
+    <section className="w-full bg-white rounded-xl shadow-md border border-[#E5E7EB]">
+      <h2 className="w-full px-8 py-7 text-xl border-b border-b-[#E5E7EB]">
+        My Messages
+      </h2>
+    </section>
   );
 };
 

@@ -1,10 +1,7 @@
 "use client";
 
 import useFormFilterSubmit from "@/hooks/useFormFilterSubmit";
-import {
-  faChevronDown,
-  faArrowDownShortWide,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";

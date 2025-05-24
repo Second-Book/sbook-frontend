@@ -1,7 +1,6 @@
 import { TextbookType } from "@/utils/types";
 import TextbookGridStyle from "./TextbookGridStyle.module.css";
 import TextbookCard from "../TextbookCard/TextbookCard";
-import { ReactNode } from "react";
 
 const TextbookGrid = ({ textbooks }: { textbooks: TextbookType[] }) => {
   return (

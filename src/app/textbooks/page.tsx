@@ -1,19 +1,13 @@
 import TextbookService from "@/services/TextbookService";
 import SearchTextbooksForm from "@/components/HomepageTextbooksForm/SearchTextbooksForm";
 import TextbookGrid from "@/components/TextbookGrid/TextbookGrid";
+import TextbookGridDataProvider from "@/components/TextbookGridDataProvider";
 
 export default async function TextbookSearch({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string }>;
 }) {
-  const textbooks = await TextbookService.getTextbooks();
-  const { query = "", ...params } = await searchParams;
-
-  if (!textbooks) {
-    return <p>Ooops! We&apos;re having some trouble, please try again later</p>;
-  }
-
   return (
     <section className="flex flex-col items-center pt-10 sm:pt-20 pb-5 gap-20">
       <div className="flex flex-col items-center">
@@ -23,7 +17,7 @@ export default async function TextbookSearch({
         <h1 className="text-3xl sm:text-5xl font-bold">Newest textbooks</h1>
       </div>
       <SearchTextbooksForm>
-        <TextbookGrid textbooks={textbooks.data} />
+        <TextbookGridDataProvider searchParams={await searchParams} />
       </SearchTextbooksForm>
     </section>
   );
