@@ -1,8 +1,8 @@
 "use client";
 
 import useFormFilterSubmit from "@/hooks/useFormFilterSubmit";
-import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRef, useState } from "react";
 
 const Filters = ({
   visible,
@@ -11,13 +11,22 @@ const Filters = ({
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const path = usePathname();
+  const params = useSearchParams();
+  const [formState, setFormState] = useState({
+    school_class: params.get("school_class") || "all",
+    condition: params.get("condition") || "all",
+    publisher: params.get("publisher") || "",
+    subject: params.get("subject") || "",
+    author: params.get("author") || "",
+    min_price: params.get("min_price") || "",
+    max_price: params.get("max_price") || "",
+  });
   const handleFormSubmit = useFormFilterSubmit("/textbooks");
   const formRef = useRef<HTMLFormElement | null>(null);
   return (
     <form
       action={handleFormSubmit}
-      key={path.toString()}
+      key={params.toString()}
       ref={formRef}
       className={`fixed w-screen h-screen overflow-y-auto right-[100%] top-0 pb-3 z-5 flex flex-col bg-[#F2F4F8]  ${
         visible ? "translate-x-full" : ""
@@ -33,10 +42,17 @@ const Filters = ({
       <div className="flex flex-col px-4 gap-24">
         <div className="flex flex-col gap-6">
           <div>
-            <label htmlFor="grade">Grade</label>
+            <label htmlFor="school_class">Grade</label>
             <select
-              name="grade"
-              id="grade"
+              name="school_class"
+              id="school_class"
+              value={formState.school_class}
+              onChange={(e) =>
+                setFormState((prev) => ({
+                  ...prev,
+                  school_class: e.target.value,
+                }))
+              }
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none">
               <option value="all">All</option>
               <option value="1">1</option>
@@ -54,11 +70,19 @@ const Filters = ({
             <select
               name="condition"
               id="condition"
+              value={formState.condition}
+              onChange={(e) =>
+                setFormState((prev) => ({
+                  ...prev,
+                  condition: e.target.value,
+                }))
+              }
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none">
               <option value="all">All</option>
-              <option value="used-excellent">Used-Excellent</option>
-              <option value="used-good">Used-Good</option>
-              <option value="used-fair">Used-Fair</option>
+              <option value="New">New</option>
+              <option value="Used - Excellent">Used - Excellent</option>
+              <option value="Used - Good">Used - Good</option>
+              <option value="Used - Fair">Used - Fair</option>
             </select>
           </div>
           <div>
@@ -67,6 +91,13 @@ const Filters = ({
               type="text"
               name="publisher"
               id="publisher"
+              value={formState.publisher}
+              onChange={(e) =>
+                setFormState((prev) => ({
+                  ...prev,
+                  publisher: e.target.value,
+                }))
+              }
               placeholder="E.g. Logos"
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
             />
@@ -77,6 +108,13 @@ const Filters = ({
               type="text"
               name="subject"
               id="subject"
+              value={formState.subject}
+              onChange={(e) =>
+                setFormState((prev) => ({
+                  ...prev,
+                  subject: e.target.value,
+                }))
+              }
               placeholder="E.g. Chemistry"
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"></input>
           </div>
@@ -86,24 +124,45 @@ const Filters = ({
               type="text"
               name="author"
               id="author"
+              value={formState.author}
+              onChange={(e) =>
+                setFormState((prev) => ({
+                  ...prev,
+                  author: e.target.value,
+                }))
+              }
               placeholder="E.g. John Smith"
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
             />
           </div>
           <div>
-            <label htmlFor="price-from">Price</label>
+            <label htmlFor="min_price">Price</label>
             <div className="flex gap-4">
               <input
                 type="number"
-                name="price-from"
-                id="price-from"
+                name="min_price"
+                id="min_price"
+                value={formState.min_price}
+                onChange={(e) =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    min_price: e.target.value,
+                  }))
+                }
                 placeholder="From"
                 className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
               />
               <input
                 type="number"
-                name="price-to"
-                id="price-to"
+                name="max_price"
+                id="max_price"
+                value={formState.max_price}
+                onChange={(e) =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    max_price: e.target.value,
+                  }))
+                }
                 placeholder="To"
                 className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
               />

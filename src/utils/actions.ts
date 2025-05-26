@@ -63,7 +63,7 @@ export async function submitTextbook(prevState: unknown, formData: FormData) {
   Object.entries(data).forEach(([key, value]) => {
     validatedFormData.append(key, value);
   });
-  console.log(access_token);
+
   try {
     await apiFunctions.createTextbook(validatedFormData, {
       headers: {

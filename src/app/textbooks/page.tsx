@@ -1,6 +1,4 @@
-import TextbookService from "@/services/TextbookService";
 import SearchTextbooksForm from "@/components/HomepageTextbooksForm/SearchTextbooksForm";
-import TextbookGrid from "@/components/TextbookGrid/TextbookGrid";
 import TextbookGridDataProvider from "@/components/TextbookGridDataProvider";
 
 export default async function TextbookSearch({

@@ -6,9 +6,10 @@ const useFormFilterSubmit = (targetPath: string) => {
   const handleSubmit = (formData: FormData) => {
     const paramsClone = new URLSearchParams(searchParams.toString());
     for (const [key, value] of formData.entries()) {
-      paramsClone.set(key, value as string);
+      if (value && value !== "all") {
+        paramsClone.set(key, value as string);
+      }
     }
-    console.log(paramsClone.toString());
     router.push(`${targetPath}?${paramsClone.toString()}`);
   };
 
