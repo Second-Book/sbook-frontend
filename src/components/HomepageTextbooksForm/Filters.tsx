@@ -40,7 +40,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
 
   useEffect(() => {
     setFormState(initialFormState);
-  }, [paramsString, params]);
+  }, [initialFormState]);
 
   const handleFormSubmit = useFormFilterSubmit("/textbooks");
   const formRef = useRef<HTMLFormElement | null>(null);
