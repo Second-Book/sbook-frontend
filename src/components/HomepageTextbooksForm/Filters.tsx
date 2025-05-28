@@ -4,7 +4,7 @@ import useFormFilterSubmit from "@/hooks/useFormFilterSubmit";
 import { filtersSchema } from "@/utils/schemas";
 import { FiltersErrors, FiltersState } from "@/utils/types";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const defaultFormState = {
   school_class: "all",
@@ -18,11 +18,13 @@ const defaultFormState = {
 
 const Filters = ({ identifier }: { identifier?: string }) => {
   const params = useSearchParams();
-  const paramsString = params.toString();
-  const initialFormState = {
-    ...defaultFormState,
-    ...Object.fromEntries(params.entries()),
-  };
+  const initialFormState = useMemo(() => {
+    console.log("params change detected");
+    return {
+      ...defaultFormState,
+      ...Object.fromEntries(params.entries()),
+    };
+  }, [params]);
   const [formState, setFormState] = useState<FiltersState>(initialFormState);
   const [errors, setErrors] = useState<FiltersErrors>({ _errors: [] });
 
@@ -48,7 +50,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
   return (
     <form
       action={parseAndSubmit}
-      key={paramsString + (identifier ?? "")}
+      key={params.toString() + (identifier ?? "")}
       ref={formRef}
       className={`font-(family-name:--font-poppins) font-lg`}>
       <div className="flex flex-col px-4 gap-24">
