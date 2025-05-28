@@ -26,6 +26,7 @@ const ProfileSlidingWindow = (props: ProfileSlidingWindowProps) => {
     window.addEventListener("mousedown", handleOutsideClick);
 
     return () => window.removeEventListener("mousedown", handleOutsideClick);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.visible]);
 
   return (

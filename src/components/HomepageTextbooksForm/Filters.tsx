@@ -1,47 +1,59 @@
 "use client";
 
 import useFormFilterSubmit from "@/hooks/useFormFilterSubmit";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRef, useState } from "react";
+import { filtersSchema } from "@/utils/schemas";
+import { FiltersErrors, FiltersState } from "@/utils/types";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
-const Filters = ({
-  visible,
-  setVisible,
-}: {
-  visible: boolean;
-  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const defaultFormState = {
+  school_class: "all",
+  condition: "all",
+  publisher: "",
+  subject: "",
+  author: "",
+  min_price: "",
+  max_price: "",
+};
+
+const Filters = ({ identifier }: { identifier?: string }) => {
   const params = useSearchParams();
-  const [formState, setFormState] = useState({
-    school_class: params.get("school_class") || "all",
-    condition: params.get("condition") || "all",
-    publisher: params.get("publisher") || "",
-    subject: params.get("subject") || "",
-    author: params.get("author") || "",
-    min_price: params.get("min_price") || "",
-    max_price: params.get("max_price") || "",
-  });
+  const paramsString = params.toString();
+  const initialFormState = {
+    ...defaultFormState,
+    ...Object.fromEntries(params.entries()),
+  };
+  const [formState, setFormState] = useState<FiltersState>(initialFormState);
+  const [errors, setErrors] = useState<FiltersErrors>({ _errors: [] });
+
+  const parseAndSubmit = (formData: FormData) => {
+    console.log("Triggered");
+    const result = filtersSchema.safeParse(formState);
+    if (result.error) {
+      console.log(result.error.format());
+      setErrors(result.error.format());
+      return;
+    }
+    setErrors({ _errors: [] });
+    handleFormSubmit(formData);
+  };
+
+  useEffect(() => {
+    setFormState(initialFormState);
+  }, [paramsString, params]);
+
   const handleFormSubmit = useFormFilterSubmit("/textbooks");
   const formRef = useRef<HTMLFormElement | null>(null);
+
   return (
     <form
-      action={handleFormSubmit}
-      key={params.toString()}
+      action={parseAndSubmit}
+      key={paramsString + (identifier ?? "")}
       ref={formRef}
-      className={`fixed w-screen h-screen overflow-y-auto right-[100%] top-0 pb-3 z-5 flex flex-col bg-[#F2F4F8]  ${
-        visible ? "translate-x-full" : ""
-      } transition lg:transition-none lg:static lg:w-86 lg:shrink-0 lg:self-start lg:translate-0 lg:py-6 lg:h-fit lg:rounded-xl lg:font-(family-name:--font-poppins) lg:font-lg lg:sticky lg:top-[calc(var(--navbar-height)+(var(--spacing)*4))] lg:z-0`}>
-      <div className="w-full lg:hidden text-right text-2xl">
-        <button
-          type="button"
-          onClick={() => setVisible(false)}
-          className="px-6 py-3">
-          x
-        </button>
-      </div>
+      className={`font-(family-name:--font-poppins) font-lg`}>
       <div className="flex flex-col px-4 gap-24">
         <div className="flex flex-col gap-6">
-          <div>
+          <div className="relative">
             <label htmlFor="school_class">Grade</label>
             <select
               name="school_class"
@@ -64,8 +76,11 @@ const Filters = ({
               <option value="7">7</option>
               <option value="8">8</option>
             </select>
+            <span className="absolute left-0 top-[100%] text-(--default-alert)">
+              {errors.school_class?._errors}
+            </span>
           </div>
-          <div>
+          <div className="relative">
             <label htmlFor="condition">Condition</label>
             <select
               name="condition"
@@ -84,8 +99,11 @@ const Filters = ({
               <option value="Used - Good">Used - Good</option>
               <option value="Used - Fair">Used - Fair</option>
             </select>
+            <span className="absolute left-0 top-[100%] text-(--default-alert)">
+              {errors.condition?._errors}
+            </span>
           </div>
-          <div>
+          <div className="relative">
             <label htmlFor="publisher">Publisher</label>
             <input
               type="text"
@@ -101,8 +119,11 @@ const Filters = ({
               placeholder="E.g. Logos"
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
             />
+            <span className="absolute left-0 top-[100%] text-(--default-alert)">
+              {errors.publisher?._errors}
+            </span>
           </div>
-          <div>
+          <div className="relative">
             <label htmlFor="subject">Subject</label>
             <input
               type="text"
@@ -116,9 +137,13 @@ const Filters = ({
                 }))
               }
               placeholder="E.g. Chemistry"
-              className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"></input>
+              className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
+            />
+            <span className="absolute left-0 top-[100%] text-(--default-alert)">
+              {errors.subject?._errors}
+            </span>
           </div>
-          <div>
+          <div className="relative">
             <label htmlFor="author">Author</label>
             <input
               type="text"
@@ -134,15 +159,18 @@ const Filters = ({
               placeholder="E.g. John Smith"
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
             />
+            <span className="absolute left-0 top-[100%] text-(--default-alert)">
+              {errors.author?._errors}
+            </span>
           </div>
           <div>
             <label htmlFor="min_price">Price</label>
-            <div className="flex gap-4">
+            <div className="flex gap-4 relative">
               <input
                 type="number"
                 name="min_price"
                 id="min_price"
-                value={formState.min_price}
+                value={formState.min_price || ""}
                 onChange={(e) =>
                   setFormState((prev) => ({
                     ...prev,
@@ -156,7 +184,7 @@ const Filters = ({
                 type="number"
                 name="max_price"
                 id="max_price"
-                value={formState.max_price}
+                value={formState.max_price || ""}
                 onChange={(e) =>
                   setFormState((prev) => ({
                     ...prev,
@@ -166,6 +194,9 @@ const Filters = ({
                 placeholder="To"
                 className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
               />
+              <span className="absolute left-0 top-[100%] text-(--default-alert)">
+                {errors.max_price?._errors}
+              </span>
             </div>
           </div>
         </div>
@@ -177,7 +208,7 @@ const Filters = ({
           </button>
           <button
             type="button"
-            onClick={() => formRef.current?.reset()}
+            onClick={() => setFormState(defaultFormState)}
             className="text-2xl px-8 py-3 text-[#00000080] underline decoration-1 underline-offset-2 cursor-pointer">
             Clear
           </button>

@@ -1,3 +1,6 @@
+import { z } from "zod";
+import { filtersSchema } from "./schemas";
+
 export type ImageType = {
   preview: string;
   detail: string;
@@ -53,3 +56,7 @@ export type UserDataType = {
   groups: unknown[];
   user_permissions: unknown[];
 };
+
+export type FiltersState = z.input<typeof filtersSchema>;
+
+export type FiltersErrors = z.ZodFormattedError<FiltersState, string>;

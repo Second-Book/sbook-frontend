@@ -4,12 +4,10 @@ import TextbookGrid from "@/components/TextbookGrid/TextbookGrid";
 import useUserStore from "@/hooks/useUserStore";
 import TextbookService from "@/services/TextbookService";
 import { TextbookType } from "@/utils/types";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const MyListings = () => {
   const { user } = useUserStore((state) => state);
-  const router = useRouter();
   const [textbooks, setTextbooks] = useState<TextbookType[]>([]);
 
   useEffect(() => {

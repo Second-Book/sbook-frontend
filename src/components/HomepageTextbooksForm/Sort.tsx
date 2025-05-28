@@ -13,7 +13,7 @@ const Sort = () => {
   return (
     <form
       action={handleFormSubmit}
-      className="flex-1 flex items-center text-lg lg:flex-initial gap-2"
+      className="flex-1 flex items-center text-lg lg:flex-initial gap-2 relative"
       key={params.toString()}>
       <label htmlFor="sort" className="hidden lg:inline-block">
         Sort

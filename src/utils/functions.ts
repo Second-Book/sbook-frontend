@@ -1,19 +1,26 @@
 export const getPaginatedPages = (currentPage: number, totalPages: number) => {
-  if (currentPage > totalPages) {
-    return [-1];
+  if (currentPage > totalPages || currentPage < 1 || totalPages < 1) {
+    throw new Error("Invalid page parameter");
   }
   const finalArray: number[] = [];
   const window = [currentPage - 1, currentPage, currentPage + 1].filter(
     (page) => page > 0 && page <= totalPages
   );
   finalArray.push(1);
-  window[0] > 3 ? finalArray.push(-1) : finalArray.push(2);
+
+  if (window[0] > 3) {
+    finalArray.push(-1);
+  } else {
+    finalArray.push(2);
+  }
 
   finalArray.push(...window);
 
-  window[window.length - 1] < totalPages - 2
-    ? finalArray.push(-2)
-    : finalArray.push(totalPages - 1);
+  if (window[window.length - 1] < totalPages - 2) {
+    finalArray.push(-2);
+  } else {
+    finalArray.push(totalPages - 1);
+  }
 
   finalArray.push(totalPages);
 

@@ -1,10 +1,7 @@
 "use client";
 
 import useUserStore from "@/hooks/useUserStore";
-import {
-  faBookOpenReader,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBookOpenReader } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import SearchForm from "./SearchForm";

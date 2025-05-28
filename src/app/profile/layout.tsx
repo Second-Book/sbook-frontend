@@ -1,4 +1,3 @@
-import SidebarLayout from "@/components/SidebarLayout";
 import UserProfileCard from "@/components/UserProfileCard";
 import { ReactNode } from "react";
 

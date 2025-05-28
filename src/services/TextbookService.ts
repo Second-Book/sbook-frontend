@@ -5,9 +5,7 @@ import { TextbooksResponseType, TextbookType } from "@/utils/types";
 const apiFunctions = {
   async getTextbooks(params?: AxiosRequestConfig) {
     try {
-      return await apiClient.get<TextbooksResponseType>("/textbooks/", {
-        params: params,
-      });
+      return await apiClient.get<TextbooksResponseType>("/textbooks/", params);
     } catch (err) {
       console.log(err);
       throw new Error(`Failed to fetch textbooks: ${err}`);
