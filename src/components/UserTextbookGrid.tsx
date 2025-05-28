@@ -17,7 +17,7 @@ const UserTextbookGrid = () => {
       try {
         setError(false);
         const response = await apiFunctions.getUserTextbooks(user.username);
-        setTextbooks(response.data);
+        setTextbooks(response.data.results);
       } catch {
         setError(true);
       }

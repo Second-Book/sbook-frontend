@@ -28,3 +28,11 @@ export const getPaginatedPages = (currentPage: number, totalPages: number) => {
     page > 0 ? page.toString() : "..."
   );
 };
+
+export const formatDate = (date: string) => {
+  return new Date(date).toLocaleString("en", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+};
