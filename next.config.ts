@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: isProd ? "http" : "http",
+        protocol: isProd ? "https" : "http",
         hostname: isProd ? "api.sb.maria.rezvov.com" : "127.0.0.1",
         port: isProd ? "" : "8000",
         pathname: "/media/__sized__/**",
