@@ -18,6 +18,7 @@ This is the front end portion of the textbook marketplace app, written in Next.j
    ```
 
 3. Create .env.local and copy there file .env.local.example.
+
    ```bash
    cp .env.local.example .env.local
    ```
