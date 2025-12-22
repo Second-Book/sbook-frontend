@@ -15,6 +15,7 @@ export type TextbookType = {
   author: string;
   school_class: string;
   publisher: string;
+  subject: string;
   price: string;
   description: string;
   whatsapp_contact: string;

@@ -10,18 +10,26 @@ const nextConfig: NextConfig = {
         protocol: isProd ? "https" : "http",
         hostname: isProd ? "api.sb.maria.rezvov.com" : "127.0.0.1",
         port: isProd ? "" : "8000",
-        pathname: "/media/__sized__/**",
+        pathname: "/media/**",
       },
     ],
+    unoptimized: false,
   },
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/textbooks",
-        permanent: true,
-      },
-    ];
+  // Redirect removed - homepage is now implemented at "/"
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/",
+  //       destination: "/textbooks",
+  //       permanent: true,
+  //     },
+  //   ];
+  // },
+  // Experimental options to help with Bus error
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
   },
 };
 

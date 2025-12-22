@@ -1,35 +1,176 @@
-# Frontend Project
+# Textbook Marketplace Frontend
 
-This is the front end portion of the textbook marketplace app, written in Next.js
+Next.js 16 frontend application for textbook marketplace platform.
 
-## Setup and Installation
+## Prerequisites
 
-1. Clone the repository:
+- Node.js 18+ (LTS recommended)
+- pnpm 8+ (`npm install -g pnpm`)
 
-   ```bash
-   git clone https://github.com/Second-Book/textbook-marketplace-frontend
-   cd textbook-marketplace-frontend
-   ```
+## Installation
 
-2. Install dependencies:
+Install dependencies:
 
-   ```bash
-   npm install
-   ```
+```bash
+pnpm install
+```
 
-3. Create .env.local and copy there file .env.local.example.
-   ```bash
-   cp .env.local.example .env.local
-   ```
+## Environment Setup
 
-   And set right variables
+Copy `env.example` to `.env`:
 
-4. Run the development server:
+```bash
+cp env.example .env
+```
 
-   ```bash
-   npm run dev
-   ```
+Configure environment variables in `.env`:
 
-5. Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
+- `NEXT_PUBLIC_API_BASE_URL`: Backend API base URL (default: `http://localhost:8000`)
+- `NEXT_PUBLIC_WS_URL`: WebSocket URL for chat (default: `ws://localhost:8000`)
 
-That's it! The app should now be running locally.
+DO NOT commit `.env` to version control.
+
+## Local API Connection
+
+### Backend Requirements
+
+Backend MUST be running on `http://localhost:8000` (or configure `NEXT_PUBLIC_API_BASE_URL`).
+
+### Development Setup
+
+1. Start backend server (see backend repository README)
+2. Verify backend health: `curl http://localhost:8000/api/health/`
+3. Start frontend: `pnpm dev`
+4. Open `http://localhost:3000`
+
+### API Configuration
+
+API client configured in `src/services/api.ts`:
+
+- Base URL: `process.env.NEXT_PUBLIC_API_BASE_URL`
+- Automatic token refresh on 401 responses
+- Bearer token authentication via `Authorization` header
+
+### WebSocket Configuration
+
+WebSocket service configured in `src/services/websocketService.ts`:
+
+- URL: `process.env.NEXT_PUBLIC_WS_URL` (default: `ws://localhost:8000`)
+- Endpoint: `/ws/chat/?token={access_token}`
+- Automatic reconnection on disconnect
+
+## Development
+
+Start development server:
+
+```bash
+pnpm dev
+```
+
+Start with Turbopack:
+
+```bash
+pnpm dev:turbo
+```
+
+Application runs on `http://localhost:3000`.
+
+## Available Scripts
+
+- `pnpm dev`: Start development server
+- `pnpm dev:turbo`: Start development server with Turbopack
+- `pnpm build`: Build production bundle
+- `pnpm start`: Start production server
+- `pnpm lint`: Run ESLint
+- `pnpm test`: Run Jest unit tests
+- `pnpm test:watch`: Run Jest in watch mode
+- `pnpm test:e2e`: Run Playwright E2E tests
+- `pnpm test:e2e:ui`: Run Playwright with UI mode
+
+## Testing
+
+### Unit Tests
+
+Jest configured with `jsdom` environment:
+
+```bash
+pnpm test
+```
+
+Test files MUST be located in `src/` with `.test.ts` or `.test.tsx` extension.
+
+### E2E Tests
+
+Playwright configured with base URL `http://localhost:3000`:
+
+```bash
+pnpm test:e2e
+```
+
+E2E test files MUST be located in `e2e/` directory.
+
+## Project Structure
+
+```text
+src/
+├── app/              # Next.js App Router pages
+├── components/       # React components
+├── hooks/           # Custom React hooks
+├── providers/       # Context providers
+├── services/        # API and WebSocket services
+├── stores/          # Zustand state stores
+└── utils/           # Utility functions and types
+```
+
+## Technology Stack
+
+- Next.js 16.1 (App Router)
+- React 19
+- TypeScript 5.8
+- Tailwind CSS 4.0
+- Zustand 5.0 (state management)
+- Axios 1.8 (HTTP client)
+- Zod 3.24 (validation)
+- Jest 30.2 (unit testing)
+- Playwright 1.57 (E2E testing)
+
+## Image Configuration
+
+Next.js image optimization configured in `next.config.ts`:
+
+- Development: `http://127.0.0.1:8000/media/**`
+- Production: `https://api.sb.maria.rezvov.com/media/**`
+
+## Build
+
+Build production bundle:
+
+```bash
+pnpm build
+```
+
+Start production server:
+
+```bash
+pnpm start
+```
+
+## Troubleshooting
+
+### API Connection Issues
+
+1. Verify backend is running: `curl http://localhost:8000/api/health/`
+2. Check `NEXT_PUBLIC_API_BASE_URL` in `.env`
+3. Verify CORS configuration on backend
+
+### WebSocket Connection Issues
+
+1. Verify WebSocket endpoint is accessible
+2. Check `NEXT_PUBLIC_WS_URL` in `.env`
+3. Verify authentication token is valid
+
+### Build Errors
+
+1. Clear `.next` directory: `rm -rf .next`
+2. Reinstall dependencies: `rm -rf node_modules && pnpm install`
+3. Verify Node.js version compatibility

@@ -1,11 +1,36 @@
+"use client";
+
 import { TextbookType } from "@/utils/types";
 import { formatDate } from "@/utils/functions";
+import Link from "next/link";
+import { useState } from "react";
+import TextbookService from "@/services/TextbookService";
+import { useRouter } from "next/navigation";
+import toast from 'react-hot-toast';
 
 interface UserTextbookCardProps {
   textbook: TextbookType;
 }
 
 const UserTextbookCard = (props: UserTextbookCardProps) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+  const router = useRouter();
+  
+  const handleDelete = async () => {
+    if (!confirm("Are you sure you want to delete this listing?")) return;
+    
+    setIsDeleting(true);
+    try {
+      await TextbookService.deleteTextbook(String(props.textbook.id));
+      toast.success('Textbook deleted successfully!');
+      router.refresh();
+    } catch (error) {
+      toast.error('Failed to delete listing. Please try again.');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
       <div className="flex justify-between items-start">
@@ -19,15 +44,18 @@ const UserTextbookCard = (props: UserTextbookCardProps) => {
           </p>
         </div>
         <div className="flex space-x-2">
-          <button
-            onClick={() => {}}
-            className="px-3 py-1 text-blue-600 hover:bg-blue-50 rounded">
+          <Link
+            href={`/profile/edit-listing/${props.textbook.id}`}
+            className="px-3 py-1 text-blue-600 hover:bg-blue-50 rounded"
+          >
             Edit
-          </button>
+          </Link>
           <button
-            onClick={() => {}}
-            className="px-3 py-1 text-red-600 hover:bg-red-50 rounded">
-            Delete
+            onClick={handleDelete}
+            disabled={isDeleting}
+            className="px-3 py-1 text-red-600 hover:bg-red-50 rounded disabled:opacity-50"
+          >
+            {isDeleting ? "Deleting..." : "Delete"}
           </button>
         </div>
       </div>

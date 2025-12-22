@@ -22,18 +22,50 @@ export async function signup(prevState: unknown, formData: FormData) {
   }
 
   try {
-    await apiClient.post("signup/", validated.data);
-    redirect("/login");
-  } catch {
+    const { confirmPassword, ...signupData } = validated.data;
+    await apiClient.post("/api/signup/", signupData);
+  } catch (error: unknown) {
+    // Check if it's a redirect (Next.js throws special error for redirects)
+    if (error && typeof error === 'object' && 'digest' in error) {
+      const digest = (error as { digest?: string }).digest;
+      if (digest?.startsWith('NEXT_REDIRECT')) {
+        throw error; // Re-throw redirect errors
+      }
+    }
+    
+    console.error("Signup error:", error);
+    let errorMessage = "Signup failed. Please try again";
+    if (error && typeof error === 'object' && 'response' in error) {
+      const axiosError = error as { response?: { data?: unknown } };
+      if (axiosError.response?.data) {
+        console.error("Server error response:", axiosError.response.data);
+        if (typeof axiosError.response.data === 'object' && axiosError.response.data !== null) {
+          const errorData = axiosError.response.data as Record<string, unknown>;
+          const errorMessages: string[] = [];
+          for (const [key, value] of Object.entries(errorData)) {
+            if (Array.isArray(value)) {
+              errorMessages.push(`${key}: ${value.join(', ')}`);
+            } else if (typeof value === 'string') {
+              errorMessages.push(`${key}: ${value}`);
+            }
+          }
+          if (errorMessages.length > 0) {
+            errorMessage = errorMessages.join('; ');
+          }
+        }
+      }
+    }
     return {
       form_errors: undefined,
       field_errors: undefined,
-      server_errors: ["Signup failed. Please try again"] as
+      server_errors: [errorMessage] as
         | string[]
         | undefined,
       payload: formData as FormData | undefined,
     };
   }
+  
+  redirect("/login");
 }
 
 export async function submitTextbook(prevState: unknown, formData: FormData) {

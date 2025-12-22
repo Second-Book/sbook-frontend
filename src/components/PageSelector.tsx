@@ -17,7 +17,6 @@ const PageSelector = ({
   currentPage: number;
   resultsPerPage: number;
 }) => {
-  console.log(currentPage);
   const handleSubmit = useFormFilterSubmit("/textbooks");
   const pageNumber = Math.ceil(results / resultsPerPage);
   const pagesArray = getPaginatedPages(currentPage, pageNumber);
