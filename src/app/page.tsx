@@ -3,6 +3,9 @@ import SearchBar from "@/components/SearchBar";
 import { Suspense } from "react";
 import TextbookCardSkeleton from "@/components/Skeleton/TextbookCardSkeleton";
 
+// Force dynamic rendering to avoid API calls during build
+export const dynamic = 'force-dynamic';
+
 function LoadingSkeleton() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
