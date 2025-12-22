@@ -4,6 +4,7 @@ import "./globals.css";
 import UserStoreProvider from "@/providers/UserStoreProvider";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { Toaster } from 'react-hot-toast';
 import NavbarDesktop from "@/components/Navbar/NavbarDesktop";
 import Footer from "@/components/Footer";
 import NavbarMobile from "@/components/Navbar/NavbarMobile";
@@ -45,6 +46,7 @@ export default function RootLayout({
           <NavbarMobile />
           <main className="grow bg-[#FBFBFB]">{children}</main>
           <Footer />
+          <Toaster position="top-right" />
         </UserStoreProvider>
       </body>
     </html>

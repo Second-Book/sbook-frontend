@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { TextbookType } from "@/utils/types";
 
@@ -14,14 +13,12 @@ const TextbookCard = ({ textbook, index }: TextbookCardProps) => {
     <Link
       href={`/textbook/${textbook.id}`}
       className={`bg-white rounded shadow-md relative rounded-xl overflow-hidden border border-[#DDE1E6]`}>
-      <div className="w-full aspect-square relative">
-        <Image
+      <div className="w-full aspect-square relative overflow-hidden">
+        <img
           src={textbook.image.preview}
-          fill
           alt={textbook.title}
-          className="object-cover rounded-md"
-          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 30vw, 20vw"
-          priority={index <= 4}
+          className="w-full h-full object-cover rounded-md"
+          loading={index <= 4 ? "eager" : "lazy"}
         />
       </div>
       <div className="flex flex-col px-4 py-6 gap-4">

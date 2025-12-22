@@ -19,7 +19,6 @@ const defaultFormState = {
 const Filters = ({ identifier }: { identifier?: string }) => {
   const params = useSearchParams();
   const initialFormState = useMemo(() => {
-    console.log("params change detected");
     return {
       ...defaultFormState,
       ...Object.fromEntries(params.entries()),
@@ -29,10 +28,8 @@ const Filters = ({ identifier }: { identifier?: string }) => {
   const [errors, setErrors] = useState<FiltersErrors>({ _errors: [] });
 
   const parseAndSubmit = (formData: FormData) => {
-    console.log("Triggered");
     const result = filtersSchema.safeParse(formState);
     if (result.error) {
-      console.log(result.error.format());
       setErrors(result.error.format());
       return;
     }

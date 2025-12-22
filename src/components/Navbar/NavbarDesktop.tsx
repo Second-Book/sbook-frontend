@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <nav className="hidden lg:flex gap-6 sticky top-0 z-2 items-center w-full h-24 text-black bg-white px-(--default-margin-lg) border-b border-b-(--cool-gray-20)">
       <Link
-        href="/textbooks"
+        href="/"
         className="text-2xl font-bold leading-none text-(--cool-gray-60) text-nowrap">
         <FontAwesomeIcon
           icon={faBookOpenReader}

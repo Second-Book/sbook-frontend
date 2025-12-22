@@ -18,7 +18,7 @@ const NavbarMobile = () => {
     <header className="flex flex-col gap-6 lg:hidden sticky top-0 z-2 px-(--default-margin-sm) sm:px-(--default-margin-lg) border-b border-b-(--cool-gray-20) py-4 bg-white text-2xl">
       <nav className="flex justify-between items-center">
         <Link
-          href="/textbooks"
+          href="/"
           className="font-bold leading-none text-(--cool-gray-60) text-nowrap">
           <FontAwesomeIcon
             icon={faBookOpenReader}
