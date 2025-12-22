@@ -5,7 +5,7 @@ import { TextbooksResponseType, TextbookType } from "@/utils/types";
 const apiFunctions = {
   async getTextbooks(params?: AxiosRequestConfig) {
     try {
-      return await apiClient.get<TextbooksResponseType>("/textbooks/", params);
+      return await apiClient.get<TextbooksResponseType>("/api/textbooks/", params);
     } catch (err) {
       console.log(err);
       throw new Error(`Failed to fetch textbooks: ${err}`);
@@ -13,7 +13,7 @@ const apiFunctions = {
   },
   getUserTextbooks(username: string) {
     try {
-      return apiClient.get<TextbooksResponseType>("/textbooks/", {
+      return apiClient.get<TextbooksResponseType>("/api/textbooks/", {
         params: { seller: username },
       });
     } catch (err) {
@@ -21,16 +21,16 @@ const apiFunctions = {
     }
   },
   getTextbook(id: string) {
-    return apiClient.get(`/textbook/${id}/`);
+    return apiClient.get(`/api/textbook/${id}/`);
   },
   createTextbook(textbook: FormData, config: AxiosRequestConfig) {
-    return apiClient.post("/textbook/create/", textbook, config);
+    return apiClient.post("/api/textbooks/", textbook, config);
   },
   updateTextbook(id: string, textbook: TextbookType) {
-    return apiClient.put(`/textbooks/${id}/`, textbook);
+    return apiClient.put(`/api/textbooks/${id}/`, textbook);
   },
   deleteTextbook(id: string) {
-    return apiClient.delete(`/textbooks/${id}/`);
+    return apiClient.delete(`/api/textbooks/${id}/`);
   },
 };
 

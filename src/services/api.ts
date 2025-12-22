@@ -50,7 +50,7 @@ apiClient.interceptors.response.use(
         if (!refreshToken) {
           return Promise.reject(error);
         }
-        const response = await apiClient.post('/token/refresh/', { refresh: refreshToken });
+        const response = await apiClient.post('/api/token/refresh/', { refresh: refreshToken });
         setAccessToken(response.data.access);
         error.config.headers['Authorization'] = `Bearer ${response.data.access}`;
         return apiClient.request(error.config); // Retry the failed request

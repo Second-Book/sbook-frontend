@@ -22,7 +22,7 @@ export async function signup(prevState: unknown, formData: FormData) {
   }
 
   try {
-    await apiClient.post("signup/", validated.data);
+    await apiClient.post("/api/signup/", validated.data);
     redirect("/login");
   } catch {
     return {

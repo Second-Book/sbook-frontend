@@ -6,8 +6,8 @@ import { UserStore } from '@/stores/userStore';
 const authService = {
   async login(credentials: CredentialsType, store: UserStore) {
     try {
-      const response = await apiClient.post('/token/', credentials);
-      const userResponse = await apiClient.get<UserDataType>('/users/me/', {
+      const response = await apiClient.post('/api/token/', credentials);
+      const userResponse = await apiClient.get<UserDataType>('/api/users/me/', {
         headers: {
           'Authorization': `Bearer ${response.data.access}`
         }
@@ -28,7 +28,7 @@ const authService = {
   async refreshToken() {
     try {
       const refreshToken = localStorage.getItem('refresh_token');
-      const response = await apiClient.post('/token/refresh/', { refresh: refreshToken });
+      const response = await apiClient.post('/api/token/refresh/', { refresh: refreshToken });
       localStorage.setItem('access_token', response.data.access);
       return response.data;
     } catch (error) {
@@ -39,7 +39,7 @@ const authService = {
 
   async signup(credentials: CredentialsType) {
     try {
-      const response = await apiClient.post('/signup/', credentials);
+      const response = await apiClient.post('/api/signup/', credentials);
       return response.data;
     } catch (error) {
       console.error('Signup failed:', error);

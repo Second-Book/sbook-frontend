@@ -17,18 +17,18 @@ pnpm install
 
 ## Environment Setup
 
-Copy `env.example` to `.env.local`:
+Copy `env.example` to `.env`:
 
 ```bash
-cp env.example .env.local
+cp env.example .env
 ```
 
-Configure environment variables in `.env.local`:
+Configure environment variables in `.env`:
 
 - `NEXT_PUBLIC_API_BASE_URL`: Backend API base URL (default: `http://localhost:8000`)
 - `NEXT_PUBLIC_WS_URL`: WebSocket URL for chat (default: `ws://localhost:8000`)
 
-DO NOT commit `.env.local` to version control.
+DO NOT commit `.env` to version control.
 
 ## Local API Connection
 
@@ -160,13 +160,13 @@ pnpm start
 ### API Connection Issues
 
 1. Verify backend is running: `curl http://localhost:8000/api/health/`
-2. Check `NEXT_PUBLIC_API_BASE_URL` in `.env.local`
+2. Check `NEXT_PUBLIC_API_BASE_URL` in `.env`
 3. Verify CORS configuration on backend
 
 ### WebSocket Connection Issues
 
 1. Verify WebSocket endpoint is accessible
-2. Check `NEXT_PUBLIC_WS_URL` in `.env.local`
+2. Check `NEXT_PUBLIC_WS_URL` in `.env`
 3. Verify authentication token is valid
 
 ### Build Errors

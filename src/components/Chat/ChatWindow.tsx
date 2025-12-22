@@ -22,7 +22,7 @@ export default function ChatWindow({ username }: ChatWindowProps) {
     // Load message history
     const loadMessages = async () => {
       try {
-        const response = await apiClient.get(`/chat/conversation/${username}/`);
+        const response = await apiClient.get(`/api/chat/conversation/${username}/`);
         setMessages(response.data);
         // Mark messages as seen
         if (user) {
@@ -30,7 +30,7 @@ export default function ChatWindow({ username }: ChatWindowProps) {
             .filter((msg: Message) => msg.recipient === user.username && !msg.seen)
             .map((msg: Message) => msg.id);
           if (unseenMessageIds.length > 0) {
-            await apiClient.post('/chat/mark/', { ids_to_mark: unseenMessageIds }).catch(() => {
+            await apiClient.post('/api/chat/mark/', { ids_to_mark: unseenMessageIds }).catch(() => {
               // Silently fail if marking as seen fails
             });
           }
