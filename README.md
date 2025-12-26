@@ -5,7 +5,7 @@ Next.js 16 frontend application for textbook marketplace platform.
 ## Prerequisites
 
 - Node.js 18+ (LTS recommended)
-- pnpm 8+ (`npm install -g pnpm`)
+- pnpm 8+ (install via: `curl -fsSL https://get.pnpm.io/install.sh | sh -`)
 
 ## Installation
 
