@@ -37,6 +37,23 @@ ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} << ENDSSH
   
   cd \${FRONTEND_PATH}
   
+  # Activate pnpm if not in PATH
+  if ! command -v pnpm &> /dev/null; then
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    export PATH="$PNPM_HOME:$PATH"
+    if [ -f "$HOME/.bashrc" ]; then
+      source "$HOME/.bashrc"
+    fi
+  fi
+  
+  # Activate pm2 if not in PATH
+  if ! command -v pm2 &> /dev/null; then
+    export PATH="$HOME/.local/share/pnpm:$PATH"
+    if [ -f "$HOME/.bashrc" ]; then
+      source "$HOME/.bashrc"
+    fi
+  fi
+  
   echo "Installing dependencies..."
   pnpm install --frozen-lockfile
   
