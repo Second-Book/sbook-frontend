@@ -90,7 +90,10 @@ ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} bash << ENDSSH
   cd \${FRONTEND_PATH}
   
   echo "Installing dependencies..."
-  pnpm install --frozen-lockfile
+  # Use --no-frozen-lockfile to allow pnpm to update lockfile if versions differ
+  # This handles cases where pnpm version on server differs from lockfile version
+  # Lockfile is not copied to server (in .gitignore), so we generate it from package.json
+  pnpm install --no-frozen-lockfile
   
   echo "Updating PM2 configuration..."
   if [ -f deploy/sbook-frontend.ecosystem.config.js ]; then
