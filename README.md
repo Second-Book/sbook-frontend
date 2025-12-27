@@ -91,23 +91,63 @@ Application runs on `http://localhost:3000`.
 
 ### Unit Tests
 
-Jest configured with `jsdom` environment:
+Jest configured with `jsdom` environment. Unit tests are located in `src/` with `.test.ts` or `.test.tsx` extension.
+
+Run all unit tests:
 
 ```bash
 pnpm test
 ```
 
-Test files MUST be located in `src/` with `.test.ts` or `.test.tsx` extension.
+Run tests in watch mode:
+
+```bash
+pnpm test:watch
+```
+
+Run specific test file:
+
+```bash
+pnpm test TextbookCard.test.tsx
+```
+
+**Note:** 
+- E2E tests in `e2e/` directory are excluded from Jest (configured in `jest.config.js`)
+- Unit tests can be run in CI/CD pipelines (no backend required)
 
 ### E2E Tests
 
-Playwright configured with base URL `http://localhost:3000`:
+Playwright configured with base URL `http://localhost:3000`. E2E test files MUST be located in `e2e/` directory.
+
+**Note:** E2E tests are excluded from CI/CD pipeline because they require a running backend server. Run them locally during development or manually before deployment.
+
+**Prerequisites:**
+- Backend server MUST be running on `http://localhost:8000` (see backend repository README)
+- Development server is automatically started before tests (configured in `playwright.config.ts`). If server is already running on port 3000, it will be reused.
+
+Run all E2E tests:
 
 ```bash
+# 1. Start backend server first
+cd ../sbook-backend/textbook_marketplace
+uv run python manage.py runserver
+
+# 2. In another terminal, run E2E tests
+cd ../sbook-frontend
 pnpm test:e2e
 ```
 
-E2E test files MUST be located in `e2e/` directory.
+Run E2E tests with UI mode:
+
+```bash
+pnpm test:e2e:ui
+```
+
+Run specific E2E test file:
+
+```bash
+pnpm test:e2e textbook-flow.spec.ts
+```
 
 ## Project Structure
 

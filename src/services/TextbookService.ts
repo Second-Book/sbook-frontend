@@ -7,8 +7,9 @@ const apiFunctions = {
     try {
       return await apiClient.get<TextbooksResponseType>("/api/textbooks/", params);
     } catch (err) {
-      console.log(err);
-      throw new Error(`Failed to fetch textbooks: ${err}`);
+      console.error('Failed to fetch textbooks:', err);
+      // Return null instead of throwing to allow graceful error handling in components
+      return null;
     }
   },
   getUserTextbooks(username: string) {

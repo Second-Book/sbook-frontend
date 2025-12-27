@@ -30,29 +30,64 @@ rsync -avz --delete \
   ./ ${SSH_USER}@${SSH_HOST}:${FRONTEND_PATH}/
 
 # Deploy on server
-ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} << ENDSSH
+ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} bash << ENDSSH
   set -e
   DEPLOY_PATH="${DEPLOY_PATH:-/opt/sbook}"
   FRONTEND_PATH="\${DEPLOY_PATH}/frontend"
   
-  cd \${FRONTEND_PATH}
+  echo "Checking system dependencies..."
   
-  # Activate pnpm if not in PATH
+  # Check required commands and tools
+  MISSING_DEPS=""
+  
+  # Check node (should come with npm)
+  if ! command -v node &> /dev/null; then
+    MISSING_DEPS="\${MISSING_DEPS}node "
+  fi
+  
+  # Check curl (needed for health checks)
+  if ! command -v curl &> /dev/null; then
+    MISSING_DEPS="\${MISSING_DEPS}curl "
+  fi
+  
+  # Activate pnpm and check availability
+  export PNPM_HOME="\$HOME/.local/share/pnpm"
+  if [ -d "\$PNPM_HOME" ]; then
+    export PATH="\$PNPM_HOME:\$PATH"
+  fi
+  
   if ! command -v pnpm &> /dev/null; then
-    export PNPM_HOME="$HOME/.local/share/pnpm"
-    export PATH="$PNPM_HOME:$PATH"
-    if [ -f "$HOME/.bashrc" ]; then
-      source "$HOME/.bashrc"
-    fi
+    MISSING_DEPS="\${MISSING_DEPS}pnpm "
   fi
   
-  # Activate pm2 if not in PATH
+  # Check pm2 (should be available after pnpm is activated)
   if ! command -v pm2 &> /dev/null; then
-    export PATH="$HOME/.local/share/pnpm:$PATH"
-    if [ -f "$HOME/.bashrc" ]; then
-      source "$HOME/.bashrc"
-    fi
+    MISSING_DEPS="\${MISSING_DEPS}pm2 "
   fi
+  
+  # Fail fast if dependencies are missing
+  if [ -n "\${MISSING_DEPS}" ]; then
+    echo "ERROR: Missing required system dependencies: \${MISSING_DEPS}"
+    echo ""
+    echo "Install missing dependencies:"
+    if echo "\${MISSING_DEPS}" | grep -q "node "; then
+      echo "  node: curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && sudo apt-get install -y nodejs"
+    fi
+    if echo "\${MISSING_DEPS}" | grep -q "pnpm "; then
+      echo "  pnpm: curl -fsSL https://get.pnpm.io/install.sh | sh -"
+    fi
+    if echo "\${MISSING_DEPS}" | grep -q "pm2 "; then
+      echo "  pm2: pnpm install -g pm2"
+    fi
+    if echo "\${MISSING_DEPS}" | grep -q "curl "; then
+      echo "  curl: sudo apt-get install -y curl"
+    fi
+    exit 1
+  fi
+  
+  echo "All system dependencies are available"
+  
+  cd \${FRONTEND_PATH}
   
   echo "Installing dependencies..."
   pnpm install --frozen-lockfile

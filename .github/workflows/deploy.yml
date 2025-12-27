@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # Note: Unit tests can be added here with: pnpm test
+      # E2E tests are excluded from CI/CD as they require backend server
+
       - name: Build application
         run: pnpm build
         env:

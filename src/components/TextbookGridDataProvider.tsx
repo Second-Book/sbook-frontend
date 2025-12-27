@@ -14,6 +14,7 @@ export default async function TextbookGridDataProvider({
     params: { ...searchParams, limit: resultsPerPage, offset: offset },
   });
 
+  // Handle API errors gracefully (e.g., backend not available)
   if (!result) {
     return <p>Ooops! We&apos;re having some trouble, please try again later</p>;
   }
