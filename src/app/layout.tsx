@@ -1,12 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Poppins, Roboto } from "next/font/google";
 import "./globals.css";
 import UserStoreProvider from "@/providers/UserStoreProvider";
-import Navbar from "@/components/Navbar";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import { Toaster } from 'react-hot-toast';
+import NavbarDesktop from "@/components/Navbar/NavbarDesktop";
+import Footer from "@/components/Footer";
+import NavbarMobile from "@/components/Navbar/NavbarMobile";
 
-const inter = Inter({
-  variable: "--font-inter",
+config.autoAddCss = false;
+
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
+});
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["300"],
 });
 
 export const metadata: Metadata = {
@@ -16,8 +29,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   width: "device-width",
-  initialScale: 0
-}
+  initialScale: 0,
+};
 
 export default function RootLayout({
   children,
@@ -26,10 +39,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable}`}>
+      <body
+        className={`${roboto.variable} ${poppins.variable} min-h-[100vh] flex flex-col`}>
         <UserStoreProvider>
-          <Navbar />
-          {children}
+          <NavbarDesktop />
+          <NavbarMobile />
+          <main className="grow bg-[#FBFBFB]">{children}</main>
+          <Footer />
+          <Toaster position="top-right" />
         </UserStoreProvider>
       </body>
     </html>

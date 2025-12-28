@@ -1,1 +1,18 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+:root {
+  --cool-gray-20: #dde1e6;
+  --cool-gray-30: #c1c7cd;
+  --cool-gray-60: #697077;
+  --cool-gray-70: #4d5358;
+  --cool-gray-90: #21272a;
+  --primary-90: #001d6c;
+  --default-alert: #da1e28;
+  --default-margin-lg: calc(var(--spacing) * 20);
+  --default-margin-sm: calc(var(--spacing) * 3);
+  --navbar-height: calc(var(--spacing) * 24);
+}
+
+body {
+  font-family: var(--font-roboto);
+}

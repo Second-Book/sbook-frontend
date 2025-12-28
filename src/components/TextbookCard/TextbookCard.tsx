@@ -1,30 +1,45 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { TextbookType } from "@/utils/types"
-import TextbookCardStyle from "./TextbookCardStyle.module.css"
+import Link from "next/link";
+import { TextbookType } from "@/utils/types";
 
 interface TextbookCardProps {
-    textbook: TextbookType
+  textbook: TextbookType;
+  index: number;
 }
 
-const TextbookCard = (props: TextbookCardProps) => {
-    return (
-        <div className={`${TextbookCardStyle.textbookCard} ${TextbookCardStyle.relativeModule} flex flex-col gap-5 p-5 bg-white rounded shadow-md relative`}>
-            <Image src={"http://127.0.0.1:8000" + props.textbook.image.preview} width={240} height={312} alt={props.textbook.title} className="object-contain w-[240px] h-[312px]"/>
-            <Link href={`/textbook/${props.textbook.id}`} className={`${TextbookCardStyle.detailsButton} absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
-                Details
-            </Link>
-            <h2 className="text-2xl font-bold leading-tight">{props.textbook.title}</h2>
-            <p className="text-lg leading-tight">Author: {props.textbook.author}</p>
-            <p className="text-lg leading-tight">Publisher: {props.textbook.publisher}</p>
-            <p className="text-lg leading-tight">Price: {props.textbook.price}</p>
-            <button className={TextbookCardStyle.addToCartButton} onClick={() => {}}>
-                Add to Cart
-            </button>
+const TextbookCard = ({ textbook, index }: TextbookCardProps) => {
+  return (
+    <Link
+      href={`/textbook/${textbook.id}`}
+      className={`bg-white rounded shadow-md relative rounded-xl overflow-hidden border border-[#DDE1E6]`}>
+      <div className="w-full aspect-square relative overflow-hidden">
+        <img
+          src={textbook.image.preview}
+          alt={textbook.title}
+          className="w-full h-full object-cover rounded-md"
+          loading={index <= 4 ? "eager" : "lazy"}
+        />
+      </div>
+      <div className="flex flex-col px-4 py-6 gap-4">
+        <div className="w-full flex justify-between items-center flex-wrap gap-y-1">
+          <p className="p-1 text-sm w-fit font-bold text-white rounded-sm bg-[#D3D3D3]">
+            {textbook.condition}
+          </p>
+          <h3 className="text-lg md:text-2xl font-bold">{textbook.price}</h3>
         </div>
-    )
-}
+        <div>
+          <p className="font-medium">Grade {textbook.school_class}</p>
+          <h3 className="text-xl md:text-2xl font-bold line-clamp-2">
+            {textbook.title}
+          </h3>
+        </div>
+        <p className="line-clamp-1">
+          {textbook.author}, {textbook.publisher}
+        </p>
+      </div>
+    </Link>
+  );
+};
 
-export default TextbookCard
+export default TextbookCard;

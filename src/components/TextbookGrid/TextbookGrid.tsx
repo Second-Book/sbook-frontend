@@ -1,21 +1,17 @@
-import { TextbookType } from "@/utils/types"
-import TextbookGridStyle from "./TextbookGridStyle.module.css"
-import TextbookCard from "../TextbookCard/TextbookCard"
+import { TextbookType } from "@/utils/types";
+import TextbookGridStyle from "./TextbookGridStyle.module.css";
+import TextbookCard from "../TextbookCard/TextbookCard";
 
-interface TextbookGridProps {
-    textbooks: TextbookType[]
-}
-
-const TextbookGrid = (props: TextbookGridProps) => {
+const TextbookGrid = ({ textbooks }: { textbooks: TextbookType[] }) => {
   return (
-    <section className="mt-14 max-md:mt-10 max-md:max-w-full w-2/3 mx-auto">
-    <div className={TextbookGridStyle.textbookGrid}>
-      {props.textbooks.map(textbook => (
-        <TextbookCard key={textbook.id} textbook={textbook}/>
-      ))}
-    </div>
-  </section>
-  )
-}
+    <section className="grow relative">
+      <div className={`${TextbookGridStyle.textbookGrid}`}>
+        {textbooks.map((textbook, index) => (
+          <TextbookCard key={textbook.id} textbook={textbook} index={index} />
+        ))}
+      </div>
+    </section>
+  );
+};
 
-export default TextbookGrid
+export default TextbookGrid;
