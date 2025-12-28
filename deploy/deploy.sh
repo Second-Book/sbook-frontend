@@ -10,7 +10,7 @@ FRONTEND_PATH="${DEPLOY_PATH}/frontend"
 echo "Deploying frontend to ${SSH_USER}@${SSH_HOST}:${FRONTEND_PATH}"
 
 # Create directory structure on server
-ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} << ENDSSH
+ssh ${SSH_USER}@${SSH_HOST} << ENDSSH
   set -e
   DEPLOY_PATH="${DEPLOY_PATH:-/opt/sbook}"
   FRONTEND_PATH="\${DEPLOY_PATH}/frontend"
@@ -30,7 +30,7 @@ rsync -avz --delete \
   ./ ${SSH_USER}@${SSH_HOST}:${FRONTEND_PATH}/
 
 # Deploy on server
-ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} bash << ENDSSH
+ssh ${SSH_USER}@${SSH_HOST} bash << ENDSSH
   set -e
   DEPLOY_PATH="${DEPLOY_PATH:-/opt/sbook}"
   FRONTEND_PATH="\${DEPLOY_PATH}/frontend"
@@ -96,15 +96,16 @@ ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} bash << ENDSSH
   pnpm install --no-frozen-lockfile
   
   echo "Updating PM2 configuration..."
-  # Use FRONTEND_PORT from environment or default to 3000
-  FRONTEND_PORT_VAL="\${FRONTEND_PORT:-3000}"
-  export FRONTEND_PORT="\${FRONTEND_PORT_VAL}"
+  # Export environment variables for PM2 ecosystem config
+  export FRONTEND_PORT="\${FRONTEND_PORT:-3000}"
+  export DEPLOY_PATH="\${DEPLOY_PATH}"
+  export PNPM_PATH="\${PNPM_HOME}/pnpm"
   
   if [ -f deploy/sbook-frontend.ecosystem.config.js ]; then
     pm2 delete sbook-frontend || true
     pm2 start deploy/sbook-frontend.ecosystem.config.js
     pm2 save
-    echo "PM2 configuration updated (FRONTEND_PORT=\${FRONTEND_PORT_VAL})"
+    echo "PM2 configuration updated (FRONTEND_PORT=\${FRONTEND_PORT}, DEPLOY_PATH=\${DEPLOY_PATH})"
   else
     pm2 restart sbook-frontend || pm2 start pnpm --name sbook-frontend -- start
     pm2 save
