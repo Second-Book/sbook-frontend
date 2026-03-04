@@ -11,6 +11,7 @@ export async function signup(prevState: unknown, formData: FormData) {
     email: formData.get("email"),
     password: formData.get("password"),
     confirmPassword: formData.get("confirmPassword"),
+    confirmAge: formData.get("confirmAge"),
   });
   if (!validated.success) {
     return {
@@ -22,7 +23,7 @@ export async function signup(prevState: unknown, formData: FormData) {
   }
 
   try {
-    const { confirmPassword, ...signupData } = validated.data;
+    const { confirmPassword, confirmAge, ...signupData } = validated.data;
     await apiClient.post("/api/signup/", signupData);
   } catch (error: unknown) {
     // Check if it's a redirect (Next.js throws special error for redirects)

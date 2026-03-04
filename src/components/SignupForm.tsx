@@ -87,6 +87,24 @@ const SignupForm = () => {
               <p className="text-red-500 mt-2">{formState.form_errors[0]}</p>
             )}
           </div>
+          <div className="mb-6">
+            <label className="flex items-start gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                name="confirmAge"
+                className="mt-1 rounded border-gray-300"
+              />
+              <span className="text-sm text-gray-700">
+                Potvrđujem da imam 18 godina ili da su mi roditelji dali
+                saglasnost za korišćenje servisa
+              </span>
+            </label>
+            {formState.field_errors && formState.field_errors.confirmAge && (
+              <p className="text-red-500 mt-2">
+                {formState.field_errors.confirmAge[0]}
+              </p>
+            )}
+          </div>
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md focus:outline-none">
