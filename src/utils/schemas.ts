@@ -11,6 +11,12 @@ export const signupSchema = z
     confirmPassword: z
       .string()
       .min(8, { message: "Password must have 8 characters" }),
+    confirmAge: z.preprocess(
+      (val) => val === "on" || val === true,
+      z.literal(true, {
+        errorMap: () => ({ message: "Obavezna potvrda" }),
+      })
+    ),
   })
   .superRefine(({ password, confirmPassword }, ctx) => {
     if (password != confirmPassword) {
