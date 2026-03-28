@@ -28,11 +28,12 @@ export const signupSchema = z
   });
 
 export const textbookSubmitSchema = z.object({
-  title: z.string(),
-  author: z.string(),
-  school_class: z.string(),
-  publisher: z.string(),
-  price: z.string(),
+  title: z.string().min(1, { message: "Title is required" }),
+  author: z.string().min(1, { message: "Author is required" }),
+  subject: z.string().min(1, { message: "Subject is required" }),
+  school_class: z.string().min(1, { message: "School class is required" }),
+  publisher: z.string().min(1, { message: "Publisher is required" }),
+  price: z.string().min(1, { message: "Price is required" }),
   condition: z.enum(["New", "Used - Excellent", "Used - Good", "Used - Fair"]),
   description: z.string(),
   image: z.instanceof(Blob),
