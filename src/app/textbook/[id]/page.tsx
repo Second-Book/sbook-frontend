@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import TextbookService from "@/services/TextbookService";
 import ContactButtons from "@/components/ContactButtons";
 import MessageSellerButton from "@/components/MessageSellerButton";
+import WishlistButton from "@/components/WishlistButton";
 
 export default async function TextbookDetail({ 
   params 
@@ -57,6 +58,7 @@ export default async function TextbookDetail({
               <div className="flex flex-wrap gap-3">
                 <ContactButtons textbook={textbook} />
                 <MessageSellerButton seller={textbook.seller} />
+                <WishlistButton textbookId={textbook.id} />
               </div>
             </div>
           </div>
