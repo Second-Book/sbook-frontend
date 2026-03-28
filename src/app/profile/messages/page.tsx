@@ -78,10 +78,7 @@ function MessagesContent() {
   useEffect(() => {
     if (typeof window === "undefined" || !user) return;
 
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      websocketService.connect(token);
-    }
+    websocketService.connect();
 
     loadConversations();
 
