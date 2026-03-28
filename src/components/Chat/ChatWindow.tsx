@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { Message } from "@/services/websocketService";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { Message, WebSocketMessage } from "@/services/websocketService";
 import websocketService from "@/services/websocketService";
 import MessageBubble from "./MessageBubble";
 import apiClient from "@/services/api";
@@ -18,50 +18,52 @@ export default function ChatWindow({ username }: ChatWindowProps) {
   const [isLoading, setIsLoading] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    // Load message history
-    const loadMessages = async () => {
-      try {
-        const response = await apiClient.get(`/api/chat/conversation/${username}/`);
-        setMessages(response.data);
-        // Mark messages as seen
-        if (user) {
-          const unseenMessageIds = response.data
-            .filter((msg: Message) => msg.recipient === user.username && !msg.seen)
-            .map((msg: Message) => msg.id);
-          if (unseenMessageIds.length > 0) {
-            await apiClient.post('/api/chat/mark/', { ids_to_mark: unseenMessageIds }).catch(() => {
-              // Silently fail if marking as seen fails
-            });
-          }
+  const loadMessages = useCallback(async () => {
+    try {
+      const response = await apiClient.get(`/api/chat/conversation/${username}/`);
+      setMessages(response.data);
+      if (user) {
+        const unseenIds = response.data
+          .filter((msg: Message) => msg.recipient === user.username && !msg.seen)
+          .map((msg: Message) => msg.id);
+        if (unseenIds.length > 0) {
+          apiClient.post("/api/chat/mark/", { ids_to_mark: unseenIds }).catch(() => {});
         }
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setIsLoading(false);
+    }
+  }, [username, user]);
+
+  useEffect(() => {
+    setMessages([]);
+    setIsLoading(true);
+    loadMessages();
+
+    const handleWsMessage = (data: WebSocketMessage) => {
+      if (data.type === "message") {
+        const isRelevant = data.sender === username || data.recipient === username;
+        if (isRelevant) {
+          setMessages((prev) => [
+            ...prev,
+            {
+              id: Date.now(),
+              sender: data.sender || "",
+              recipient: data.recipient || "",
+              text: data.message || "",
+              seen: false,
+              sent_at: new Date().toISOString(),
+            },
+          ]);
+        }
       }
     };
 
-    loadMessages();
-
-    // Subscribe to new messages
-    const unsubscribe = websocketService.subscribe((data) => {
-      if (data.type === 'message' && (data.sender === username || data.recipient === username)) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now(),
-            sender: data.sender || '',
-            recipient: data.recipient || '',
-            text: data.message || '',
-            seen: false,
-            sent_at: new Date().toISOString(),
-          },
-        ]);
-      }
-    });
-
+    const unsubscribe = websocketService.subscribe(handleWsMessage);
     return unsubscribe;
-  }, [username]);
+  }, [username, loadMessages]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -85,9 +87,15 @@ export default function ChatWindow({ username }: ChatWindowProps) {
 
   return (
     <div className="flex-1 flex flex-col">
+      <div className="p-4 border-b">
+        <h3 className="font-bold">{username}</h3>
+      </div>
       <div className="flex-1 overflow-y-auto p-4">
-        {messages.map((message) => (
-          <MessageBubble key={message.id} message={message} />
+        {messages.length === 0 && (
+          <div className="text-center text-gray-400 mt-8">No messages yet. Say hello!</div>
+        )}
+        {messages.map((message, index) => (
+          <MessageBubble key={`${message.id}-${index}`} message={message} />
         ))}
         <div ref={messagesEndRef} />
       </div>
@@ -111,4 +119,3 @@ export default function ChatWindow({ username }: ChatWindowProps) {
     </div>
   );
 }
-
