@@ -70,6 +70,20 @@ const UserProfileCard = () => {
             </Link>
           </div>
         </>
+      ) : isHydrated ? (
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-(--cool-gray-60)">Sign in to view your profile</p>
+          <Link
+            href="/login"
+            className="w-full py-2 bg-black text-white text-center rounded-md">
+            Sign In
+          </Link>
+          <Link
+            href="/signup"
+            className="text-(--cool-gray-60) hover:underline">
+            Create an account
+          </Link>
+        </div>
       ) : (
         <div>Loading...</div>
       )}

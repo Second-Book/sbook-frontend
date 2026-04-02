@@ -2,11 +2,9 @@
 
 import SearchForm from "./SearchForm";
 import Link from "next/link";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBookOpenReader,
-  faPlusCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faStar } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
 import ProfileSlidingWindow from "../ProfileSlidingWindow";
@@ -19,12 +17,12 @@ const NavbarMobile = () => {
       <nav className="flex justify-between items-center">
         <Link
           href="/"
-          className="font-bold leading-none text-(--cool-gray-60) text-nowrap">
-          <FontAwesomeIcon
-            icon={faBookOpenReader}
-            className="text-rose-800 mr-1"
-          />
-          Second Book
+          className="flex items-center gap-2 font-bold leading-none text-nowrap">
+          <Image src="/logo.svg" alt="SecondBook" width={28} height={28} />
+          <span>
+            <span style={{ color: "#385572" }}>Second</span>
+            <span style={{ color: "#4B7A25" }}>Book</span>
+          </span>
         </Link>
         <div className="flex gap-6 text-(--cool-gray-60)">
           <Link href={"/profile"}>

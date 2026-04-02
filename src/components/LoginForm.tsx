@@ -9,12 +9,14 @@ const LoginForm = () => {
     const router = useRouter()
     const store = useUserStore((state) => state)
     const [error, setError] = useState<string | null>(null)
-    
-    const handleLogin = async (formData: FormData) => {
-        setError(() => null)
+
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setError(null)
+        const formData = new FormData(e.currentTarget)
         const credentials = {
-            username: formData.get("username") ? formData.get("username") as string : "",
-            password: formData.get("password") ? formData.get("password") as string : "",
+            username: (formData.get("username") as string) || "",
+            password: (formData.get("password") as string) || "",
         }
         try {
             await authService.login(credentials, store)
@@ -25,7 +27,7 @@ const LoginForm = () => {
     }
 
     return (
-        <form action={handleLogin} className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
             <div>
                 <label htmlFor="username" className="block text-zinc-400 font-bold mb-2">Username:</label>
                 <input name="username" required className="w-full border border-zinc-300 rounded py-2 px-4 leading-tight focus:outline-none focus:border-zinc-500" />

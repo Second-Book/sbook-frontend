@@ -73,6 +73,7 @@ export async function submitTextbook(prevState: unknown, formData: FormData) {
   const validated = textbookSubmitSchema.safeParse({
     title: formData.get("title"),
     author: formData.get("author"),
+    subject: formData.get("subject"),
     school_class: formData.get("school_class"),
     publisher: formData.get("publisher"),
     price: formData.get("price"),
@@ -106,6 +107,28 @@ export async function submitTextbook(prevState: unknown, formData: FormData) {
     });
   } catch (error) {
     console.log(error);
-    return { errors: "Failed submit" };
+    let errorMessage = "Failed to create textbook";
+    if (error && typeof error === 'object' && 'response' in error) {
+      const axiosError = error as { response?: { data?: unknown } };
+      if (axiosError.response?.data) {
+        if (typeof axiosError.response.data === 'object' && axiosError.response.data !== null) {
+          const errorData = axiosError.response.data as Record<string, unknown>;
+          const errorMessages: string[] = [];
+          for (const [key, value] of Object.entries(errorData)) {
+            if (Array.isArray(value)) {
+              errorMessages.push(`${key}: ${value.join(', ')}`);
+            } else if (typeof value === 'string') {
+              errorMessages.push(`${key}: ${value}`);
+            }
+          }
+          if (errorMessages.length > 0) {
+            errorMessage = errorMessages.join('; ');
+          }
+        }
+      }
+    }
+    return { errors: errorMessage };
   }
+
+  redirect("/");
 }
