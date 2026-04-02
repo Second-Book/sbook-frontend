@@ -11,7 +11,7 @@ const SortAndMobileFilters = () => {
       <button
         className="flex-1 bg-white font-(family-name:--font-poppins) rounded-md font-light text-lg text-[#00000080] lg:hidden"
         onClick={() => setFiltersVisible(!filtersVisible)}>
-        Filters
+        Filteri
       </button>
       <Sort />
       <div

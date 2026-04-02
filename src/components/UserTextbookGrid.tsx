@@ -32,11 +32,11 @@ const UserTextbookGrid = () => {
 
   return (
     <div className={`mt-8`}>
-      <h3 className="text-lg font-medium text-gray-700">My Textbooks</h3>
+      <h3 className="text-lg font-medium text-gray-700">Moji udžbenici</h3>
       <div className={`mt-4 space-y-4`}>
         {error ? (
           <CustomError
-            text="Unable to fetch user textbooks"
+            text="Greška pri učitavanju udžbenika"
             onClick={fetchTextbooks}
           />
         ) : (

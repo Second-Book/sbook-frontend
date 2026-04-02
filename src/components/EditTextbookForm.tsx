@@ -30,11 +30,11 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
     
     try {
       await TextbookService.updateTextbook(String(textbook.id), formData as unknown as TextbookType);
-      toast.success('Textbook updated successfully!');
+      toast.success('Udžbenik je uspešno izmenjen!');
       router.push("/profile/my-listings");
       router.refresh();
     } catch (error) {
-      toast.error('Failed to update textbook. Please try again.');
+      toast.error('Greška pri izmeni udžbenika. Pokušajte ponovo.');
     } finally {
       setIsSubmitting(false);
     }
@@ -46,7 +46,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
       onSubmit={handleSubmit}
     >
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">Title</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">Naslov</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="title" 
@@ -58,7 +58,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="author">Author</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="author">Autor</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="author" 
@@ -70,7 +70,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="school_class">School Class</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="school_class">Razred</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="school_class" 
@@ -82,7 +82,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="publisher">Publisher</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="publisher">Izdavač</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="publisher" 
@@ -94,7 +94,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="subject">Subject</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="subject">Predmet</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="subject" 
@@ -105,7 +105,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">Price</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">Cena</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="price" 
@@ -118,23 +118,23 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="condition">Condition</label>
-        <select 
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-          id="condition" 
-          name="condition" 
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="condition">Stanje</label>
+        <select
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="condition"
+          name="condition"
           value={formData.condition}
           onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
           required
         >
-          <option value="New">New</option>
-          <option value="Used - Excellent">Used - Excellent</option>
-          <option value="Used - Good">Used - Good</option>
-          <option value="Used - Fair">Used - Fair</option>
+          <option value="New">Novo</option>
+          <option value="Used - Excellent">Polovno — odlično</option>
+          <option value="Used - Good">Polovno — dobro</option>
+          <option value="Used - Fair">Polovno — zadovoljavajuće</option>
         </select>
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">Description</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">Opis</label>
         <textarea 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="description" 
@@ -144,7 +144,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatsapp_contact">WhatsApp Contact</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatsapp_contact">WhatsApp kontakt</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="whatsapp_contact" 
@@ -155,7 +155,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="viber_contact">Viber Contact</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="viber_contact">Viber kontakt</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="viber_contact" 
@@ -166,7 +166,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="telegram_contact">Telegram Contact</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="telegram_contact">Telegram kontakt</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="telegram_contact" 
@@ -177,7 +177,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone_contact">Phone Contact</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone_contact">Telefon</label>
         <input 
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="phone_contact" 
@@ -193,7 +193,7 @@ export default function EditTextbookForm({ textbook }: { textbook: TextbookType 
           type="submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Updating..." : "Update Textbook"}
+          {isSubmitting ? "Izmena..." : "Izmeni udžbenik"}
         </button>
       </div>
     </form>

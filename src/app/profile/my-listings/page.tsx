@@ -25,13 +25,13 @@ const MyListings = () => {
   return (
     <section className="w-full bg-white rounded-xl shadow-md border border-[#E5E7EB]">
       <h2 className="w-full px-8 py-7 text-xl border-b border-b-[#E5E7EB]">
-        My Listings
+        Moji oglasi
       </h2>
       <div className="px-8 py-4">
         {textbooks.length ? (
           <TextbookGrid textbooks={textbooks} />
         ) : (
-          "No textbooks to show"
+          "Nema oglasa"
         )}
       </div>
     </section>

@@ -29,7 +29,7 @@ const TextbookCard = ({ textbook, index }: TextbookCardProps) => {
           <h3 className="text-lg md:text-2xl font-bold">{textbook.price}</h3>
         </div>
         <div>
-          <p className="font-medium">Grade {textbook.school_class}</p>
+          <p className="font-medium">{textbook.school_class}. razred</p>
           <h3 className="text-xl md:text-2xl font-bold line-clamp-2">
             {textbook.title}
           </h3>

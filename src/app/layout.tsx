@@ -23,13 +23,45 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "EduMarket",
-  description: "Your place for used books",
+  title: {
+    default: "SecondBook — kupovina i prodaja udžbenika u Beogradu",
+    template: "%s | SecondBook",
+  },
+  description:
+    "SecondBook — platforma za kupovinu i prodaju polovnih školskih udžbenika u Beogradu. Povoljne cene, ugrađen chat, pretraga po razredu, predmetu i autoru.",
+  keywords: [
+    "udžbenici",
+    "polovna udžbenici",
+    "školski udžbenici",
+    "kupovina udžbenika",
+    "prodaja udžbenika",
+    "Beograd",
+    "SecondBook",
+    "textbooks",
+    "used textbooks",
+    "Belgrade",
+  ],
+  openGraph: {
+    title: "SecondBook — kupovina i prodaja udžbenika u Beogradu",
+    description:
+      "Platforma za kupovinu i prodaju polovnih školskih udžbenika u Beogradu po povoljnim cenama.",
+    siteName: "SecondBook",
+    locale: "sr_Latn_RS",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "SecondBook — kupovina i prodaja udžbenika u Beogradu",
+    description:
+      "Platforma za kupovinu i prodaju polovnih školskih udžbenika u Beogradu.",
+  },
+  manifest: "/manifest.json",
+  metadataBase: new URL("https://sb.maria.rezvov.com"),
 };
 
 export const viewport: Viewport = {
   width: "device-width",
-  initialScale: 0,
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -38,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="sr-Latn">
       <body
         className={`${roboto.variable} ${poppins.variable} min-h-[100vh] flex flex-col`}>
         <UserStoreProvider>

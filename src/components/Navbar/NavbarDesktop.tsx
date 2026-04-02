@@ -24,34 +24,34 @@ const Navbar = () => {
         <Link
           href="/login"
           className="font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-(--primary-90) text-lg text-(--primary-90)">
-          Sign In
+          Prijava
         </Link>
       )}
       {!isAuthenticated && (
         <Link
           href="/signup"
           className="font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-(--primary-90) text-lg text-(--primary-90)">
-          Sign Up
+          Registracija
         </Link>
       )}
       {isAuthenticated && (
         <Link
           href="/profile/my-listings"
           className="font-medium relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-(--primary-90) text-lg text-(--primary-90)">
-          Profile
+          Profil
         </Link>
       )}
       {isAuthenticated && (
         <button
           onClick={() => logout()}
           className="font-medium cursor-pointer relative after:absolute [&:not(:hover)]:after:hidden after:top-11/10 after:left-0 after:w-full after:h-[2px] after:bg-(--primary-90) text-lg text-(--primary-90)">
-          Logout
+          Odjava
         </button>
       )}
       <Link
         href={isAuthenticated ? "/new-textbook" : "/login"}
         className="px-8 py-3 bg-rose-800 text-white text-xl rounded-xl font-(family-name:--font-poppins) font-light text-nowrap">
-        Sell a book
+        Prodaj udžbenik
       </Link>
     </nav>
   );

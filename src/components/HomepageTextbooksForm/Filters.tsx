@@ -53,7 +53,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
       <div className="flex flex-col px-4 gap-24">
         <div className="flex flex-col gap-6">
           <div className="relative">
-            <label htmlFor="school_class">Grade</label>
+            <label htmlFor="school_class">Razred</label>
             <select
               name="school_class"
               id="school_class"
@@ -65,7 +65,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
                 }))
               }
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none">
-              <option value="all">All</option>
+              <option value="all">Svi</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -80,7 +80,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
             </span>
           </div>
           <div className="relative">
-            <label htmlFor="condition">Condition</label>
+            <label htmlFor="condition">Stanje</label>
             <select
               name="condition"
               id="condition"
@@ -92,18 +92,18 @@ const Filters = ({ identifier }: { identifier?: string }) => {
                 }))
               }
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none">
-              <option value="all">All</option>
-              <option value="New">New</option>
-              <option value="Used - Excellent">Used - Excellent</option>
-              <option value="Used - Good">Used - Good</option>
-              <option value="Used - Fair">Used - Fair</option>
+              <option value="all">Svi</option>
+              <option value="New">Novo</option>
+              <option value="Used - Excellent">Polovno — odlično</option>
+              <option value="Used - Good">Polovno — dobro</option>
+              <option value="Used - Fair">Polovno — zadovoljavajuće</option>
             </select>
             <span className="absolute left-0 top-[100%] text-(--default-alert)">
               {errors.condition?._errors}
             </span>
           </div>
           <div className="relative">
-            <label htmlFor="publisher">Publisher</label>
+            <label htmlFor="publisher">Izdavač</label>
             <input
               type="text"
               name="publisher"
@@ -115,7 +115,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
                   publisher: e.target.value,
                 }))
               }
-              placeholder="E.g. Logos"
+              placeholder="Npr. Logos"
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
             />
             <span className="absolute left-0 top-[100%] text-(--default-alert)">
@@ -123,7 +123,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
             </span>
           </div>
           <div className="relative">
-            <label htmlFor="subject">Subject</label>
+            <label htmlFor="subject">Predmet</label>
             <input
               type="text"
               name="subject"
@@ -135,7 +135,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
                   subject: e.target.value,
                 }))
               }
-              placeholder="E.g. Chemistry"
+              placeholder="Npr. Hemija"
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
             />
             <span className="absolute left-0 top-[100%] text-(--default-alert)">
@@ -143,7 +143,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
             </span>
           </div>
           <div className="relative">
-            <label htmlFor="author">Author</label>
+            <label htmlFor="author">Autor</label>
             <input
               type="text"
               name="author"
@@ -155,7 +155,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
                   author: e.target.value,
                 }))
               }
-              placeholder="E.g. John Smith"
+              placeholder="Npr. Petrović"
               className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
             />
             <span className="absolute left-0 top-[100%] text-(--default-alert)">
@@ -163,7 +163,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
             </span>
           </div>
           <div>
-            <label htmlFor="min_price">Price</label>
+            <label htmlFor="min_price">Cena</label>
             <div className="flex gap-4 relative">
               <input
                 type="number"
@@ -176,7 +176,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
                     min_price: e.target.value,
                   }))
                 }
-                placeholder="From"
+                placeholder="Od"
                 className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
               />
               <input
@@ -190,7 +190,7 @@ const Filters = ({ identifier }: { identifier?: string }) => {
                     max_price: e.target.value,
                   }))
                 }
-                placeholder="To"
+                placeholder="Do"
                 className="w-full bg-white px-7 py-2 rounded-xl mt-2 text-[#00000080] appearance-none"
               />
               <span className="absolute left-0 top-[100%] text-(--default-alert)">
@@ -203,13 +203,13 @@ const Filters = ({ identifier }: { identifier?: string }) => {
           <button
             type="submit"
             className="text-2xl px-8 py-3 bg-white rounded-xl text-[#00000080] cursor-pointer">
-            Search
+            Pretraži
           </button>
           <button
             type="button"
             onClick={() => setFormState(defaultFormState)}
             className="text-2xl px-8 py-3 text-[#00000080] underline decoration-1 underline-offset-2 cursor-pointer">
-            Clear
+            Poništi
           </button>
         </div>
       </div>

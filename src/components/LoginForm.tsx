@@ -22,21 +22,21 @@ const LoginForm = () => {
             await authService.login(credentials, store)
             router.push("/textbooks")
         } catch {
-            setError("Incorrect username or password")
+            setError("Pogrešno korisničko ime ili lozinka")
         }
     }
 
     return (
         <form onSubmit={handleLogin} className="space-y-4">
             <div>
-                <label htmlFor="username" className="block text-zinc-400 font-bold mb-2">Username:</label>
+                <label htmlFor="username" className="block text-zinc-400 font-bold mb-2">Korisničko ime:</label>
                 <input name="username" required className="w-full border border-zinc-300 rounded py-2 px-4 leading-tight focus:outline-none focus:border-zinc-500" />
             </div>
             <div>
-                <label htmlFor="password" className="block text-zinc-400 font-bold mb-2">Password:</label>
+                <label htmlFor="password" className="block text-zinc-400 font-bold mb-2">Lozinka:</label>
                 <input name="password" type="password" required className="w-full border border-zinc-300 rounded py-2 px-4 leading-tight focus:outline-none focus:border-zinc-500" />
             </div>
-            <button type="submit" className="bg-red-800 text-white py-2 px-4 rounded hover:bg-red-700 focus:outline-none focus:bg-red-700">Login</button>
+            <button type="submit" className="bg-red-800 text-white py-2 px-4 rounded hover:bg-red-700 focus:outline-none focus:bg-red-700">Prijavite se</button>
             {error && <p v-if="errorMessage" className="text-red-500 mt-2">{error}</p>}
         </form>
     )
