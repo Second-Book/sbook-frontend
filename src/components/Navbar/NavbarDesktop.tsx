@@ -1,8 +1,7 @@
 "use client";
 
 import useUserStore from "@/hooks/useUserStore";
-import { faBookOpenReader } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import Link from "next/link";
 import SearchForm from "./SearchForm";
 
@@ -13,12 +12,12 @@ const Navbar = () => {
     <nav className="hidden lg:flex gap-6 sticky top-0 z-2 items-center w-full h-24 text-black bg-white px-(--default-margin-lg) border-b border-b-(--cool-gray-20)">
       <Link
         href="/"
-        className="text-2xl font-bold leading-none text-(--cool-gray-60) text-nowrap">
-        <FontAwesomeIcon
-          icon={faBookOpenReader}
-          className="text-rose-800 mr-1"
-        />
-        Second Book
+        className="flex items-center gap-2 text-2xl font-bold leading-none text-nowrap">
+        <Image src="/logo.svg" alt="SecondBook" width={32} height={32} />
+        <span>
+          <span style={{ color: "#385572" }}>Second</span>
+          <span style={{ color: "#4B7A25" }}>Book</span>
+        </span>
       </Link>
       <SearchForm />
       {!isAuthenticated && (
