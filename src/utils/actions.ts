@@ -35,7 +35,7 @@ export async function signup(prevState: unknown, formData: FormData) {
     }
     
     console.error("Signup error:", error);
-    let errorMessage = "Signup failed. Please try again";
+    let errorMessage = "Registracija nije uspela. Pokušajte ponovo";
     if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: unknown } };
       if (axiosError.response?.data) {
@@ -107,7 +107,7 @@ export async function submitTextbook(prevState: unknown, formData: FormData) {
     });
   } catch (error) {
     console.log(error);
-    let errorMessage = "Failed to create textbook";
+    let errorMessage = "Greška pri kreiranju oglasa";
     if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: unknown } };
       if (axiosError.response?.data) {

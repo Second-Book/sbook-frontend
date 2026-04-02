@@ -12,7 +12,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
         disabled={currentPage === 1}
         className="px-4 py-2 border rounded disabled:opacity-50"
       >
-        Previous
+        Prethodna
       </button>
       
       {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
@@ -32,7 +32,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
         disabled={currentPage === totalPages}
         className="px-4 py-2 border rounded disabled:opacity-50"
       >
-        Next
+        Sledeća
       </button>
     </div>
   );

@@ -48,10 +48,10 @@ export default function WishlistButton({ textbookId }: { textbookId: number }) {
           ? "bg-red-50 border-red-300 text-red-600 hover:bg-red-100"
           : "border-gray-300 text-gray-600 hover:bg-gray-50"
       } ${loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
-      title={inWishlist ? "Remove from saved" : "Save textbook"}
+      title={inWishlist ? "Ukloni iz sačuvanih" : "Sačuvaj udžbenik"}
     >
       <FontAwesomeIcon icon={inWishlist ? faHeartSolid : faHeartRegular} />
-      {inWishlist ? "Saved" : "Save"}
+      {inWishlist ? "Sačuvano" : "Sačuvaj"}
     </button>
   );
 }

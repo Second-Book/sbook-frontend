@@ -20,7 +20,7 @@ const GlobalError = ({error, reset}: {error: Error & { digest?: string }, reset:
   }
   
   return (
-    <CustomError text="Ooops! We&apos;re having some trouble, please try again later" onClick={resetTransition} />
+    <CustomError text="Ups! Nešto je pošlo naopako, pokušajte ponovo kasnije" onClick={resetTransition} />
   )
 }
 

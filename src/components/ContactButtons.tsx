@@ -11,7 +11,7 @@ export default function ContactButtons({ textbook }: { textbook: TextbookType })
       href: `https://t.me/${textbook.telegram_contact}` },
     { contact: textbook.viber_contact, icon: faViber, label: "Viber",
       href: `viber://chat?number=${textbook.viber_contact}` },
-    { contact: textbook.phone_contact, icon: faPhone, label: "Phone",
+    { contact: textbook.phone_contact, icon: faPhone, label: "Telefon",
       href: `tel:${textbook.phone_contact}` },
   ];
   

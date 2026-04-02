@@ -28,7 +28,7 @@ const UserProfileCard = () => {
             <div className="relative w-24 aspect-square rounded-full overflow-hidden">
               <Image
                 src="/user-placeholder.jpg"
-                alt="Profile picture"
+                alt="Profilna slika"
                 width={200}
                 height={200}
                 priority
@@ -39,7 +39,7 @@ const UserProfileCard = () => {
             <Link
               href={"/profile/edit"}
               className="w-full py-2 bg-black text-white text-center rounded-md">
-              Edit Profile
+              Uredi profil
             </Link>
           </div>
           <div className="w-full h-[1px] bg-(--cool-gray-20)" />
@@ -50,7 +50,7 @@ const UserProfileCard = () => {
                 path.includes("my-listings") ? "bg-gray-100" : ""
               } rounded-md hover:bg-(--cool-gray-30)`}>
               <FontAwesomeIcon icon={faBook} className="mr-2" />
-              My listings
+              Moji oglasi
             </Link>
             <Link
               href={"/profile/messages"}
@@ -58,7 +58,7 @@ const UserProfileCard = () => {
                 path.includes("messages") ? "bg-gray-100" : ""
               } rounded-md hover:bg-(--cool-gray-30)`}>
               <FontAwesomeIcon icon={faMessage} className="mr-2" />
-              Messages
+              Poruke
             </Link>
             <Link
               href={"/profile/saved-items"}
@@ -66,26 +66,26 @@ const UserProfileCard = () => {
                 path.includes("saved-items") ? "bg-gray-100" : ""
               } rounded-md hover:bg-(--cool-gray-30)`}>
               <FontAwesomeIcon icon={faHeart} className="mr-2" />
-              Saved items
+              Sačuvano
             </Link>
           </div>
         </>
       ) : isHydrated ? (
         <div className="flex flex-col items-center gap-4">
-          <p className="text-(--cool-gray-60)">Sign in to view your profile</p>
+          <p className="text-(--cool-gray-60)">Prijavite se da vidite profil</p>
           <Link
             href="/login"
             className="w-full py-2 bg-black text-white text-center rounded-md">
-            Sign In
+            Prijava
           </Link>
           <Link
             href="/signup"
             className="text-(--cool-gray-60) hover:underline">
-            Create an account
+            Napravite nalog
           </Link>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div>Učitavanje...</div>
       )}
     </div>
   );

@@ -1,41 +1,48 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "O platformi",
+  description: "SecondBook — platforma za kupovinu i prodaju polovnih školskih udžbenika u Beogradu. Saznajte više o nama i kako koristiti servis.",
+};
+
 export default function About() {
   const faqs = [
     {
-      q: "How do I sell a textbook?",
-      a: "Create an account, click 'Post Ad', fill in the details, and your textbook will be visible to all users."
+      q: "Kako da prodam udžbenik?",
+      a: "Napravite nalog, kliknite 'Prodaj udžbenik', popunite podatke i vaš udžbenik će biti vidljiv svim korisnicima."
     },
     {
-      q: "Is posting ads free?",
-      a: "Yes! Posting ads is completely free on SecondBook."
+      q: "Da li je postavljanje oglasa besplatno?",
+      a: "Da! Postavljanje oglasa na SecondBook je potpuno besplatno."
     },
     {
-      q: "How do I contact a seller?",
-      a: "You can use the built-in chat or contact them via WhatsApp, Telegram, Viber, or phone if they provided those details."
+      q: "Kako da kontaktiram prodavca?",
+      a: "Možete koristiti ugrađen chat ili kontaktirati prodavca putem WhatsApp-a, Telegram-a, Viber-a ili telefona ako su ti podaci navedeni."
     },
     {
-      q: "What payment methods are supported?",
-      a: "SecondBook does not process payments. You arrange payment directly with the seller when you meet."
+      q: "Koji načini plaćanja su podržani?",
+      a: "SecondBook ne obrađuje plaćanja. Plaćanje dogovarate direktno sa prodavcem prilikom susreta."
     },
     {
-      q: "How do I report a suspicious listing?",
-      a: "Click the 'Report' button on any listing or user profile to submit a report to our moderation team."
+      q: "Kako da prijavim sumnjiv oglas?",
+      a: "Kliknite dugme 'Prijavi' na bilo kom oglasu ili profilu korisnika da pošaljete prijavu našem timu za moderaciju."
     },
   ];
-  
+
   return (
     <div className="container mx-auto px-4 py-12 max-w-3xl">
-      <h1 className="text-4xl font-bold mb-8">About SecondBook</h1>
-      
+      <h1 className="text-4xl font-bold mb-8">O platformi SecondBook</h1>
+
       <section className="mb-12">
         <p className="text-lg text-gray-700 leading-relaxed">
-          SecondBook is a platform for buying and selling used textbooks 
-          at affordable prices in Belgrade. Connect with sellers directly 
-          through our built-in chat or external contact methods.
+          SecondBook je platforma za kupovinu i prodaju polovnih školskih udžbenika
+          po povoljnim cenama u Beogradu. Kontaktirajte prodavce direktno
+          putem ugrađenog chata ili eksternih načina komunikacije.
         </p>
       </section>
-      
+
       <section>
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6">Često postavljana pitanja</h2>
         <div className="space-y-4">
           {faqs.map((faq, i) => (
             <details key={i} className="border rounded-lg p-4">
@@ -48,4 +55,3 @@ export default function About() {
     </div>
   );
 }
-

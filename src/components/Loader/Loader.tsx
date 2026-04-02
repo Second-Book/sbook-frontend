@@ -7,7 +7,7 @@ const Loader = () => {
   >
     <div className={LoaderStyle.loaderContent}>
       <div className={`${LoaderStyle.spinner} ${LoaderStyle.animateSpin}`}>◌</div>
-      <div className={LoaderStyle.loaderMessage}>Loading...</div>
+      <div className={LoaderStyle.loaderMessage}>Učitavanje...</div>
     </div>
   </div>
   )

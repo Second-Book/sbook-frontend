@@ -16,7 +16,7 @@ export default async function TextbookGridDataProvider({
 
   // Handle API errors gracefully (e.g., backend not available)
   if (!result) {
-    return <p>Ooops! We&apos;re having some trouble, please try again later</p>;
+    return <p>Ups! Nešto je pošlo naopako, pokušajte ponovo kasnije</p>;
   }
 
   const currentPage = Math.floor(offset / resultsPerPage) + 1;
@@ -31,6 +31,6 @@ export default async function TextbookGridDataProvider({
       />
     </div>
   ) : (
-    <div>No results to show</div>
+    <div>Nema rezultata</div>
   );
 }

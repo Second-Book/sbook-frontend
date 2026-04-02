@@ -1,11 +1,4 @@
 import { faBookOpenReader } from "@fortawesome/free-solid-svg-icons";
-import {
-  faYoutube,
-  faFacebook,
-  faXTwitter,
-  faInstagram,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
@@ -21,33 +14,14 @@ const Footer = () => {
           Second Book
         </div>
         <div className="flex text-white gap-x-2 flex-wrap">
-          <p className="p-2">Eleven</p>
-          <p className="p-2">Twelve</p>
-          <p className="p-2 hidden md:block">Thirteen</p>
-          <p className="p-2 hidden md:block">Fourteen</p>
-          <p className="p-2 hidden md:block">Fifteen</p>
+          <Link href="/textbooks" className="p-2 hover:underline">Udžbenici</Link>
+          <Link href="/about" className="p-2 hover:underline">O platformi</Link>
+          <Link href="/new-textbook" className="p-2 hover:underline hidden md:block">Prodaj udžbenik</Link>
         </div>
       </div>
       <div className="w-full h-[1px] bg-(--cool-gray-30)" />
       <div className="flex text-white justify-between gap-10">
-        <p>CompanyName @ 202X. All rights reserved.</p>
-        <div className="text-xl flex gap-x-6 md:text-2xl flex-wrap items-center">
-          <Link href="#">
-            <FontAwesomeIcon icon={faYoutube} />
-          </Link>
-          <Link href="#">
-            <FontAwesomeIcon icon={faFacebook} />
-          </Link>
-          <Link href="#">
-            <FontAwesomeIcon icon={faXTwitter} />
-          </Link>
-          <Link href="#">
-            <FontAwesomeIcon icon={faInstagram} />
-          </Link>
-          <Link href="#">
-            <FontAwesomeIcon icon={faLinkedin} />
-          </Link>
-        </div>
+        <p>SecondBook &copy; {new Date().getFullYear()}</p>
       </div>
     </footer>
   );

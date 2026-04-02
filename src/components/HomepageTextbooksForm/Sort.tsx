@@ -16,7 +16,7 @@ const Sort = () => {
       className="flex-1 flex items-center text-lg lg:flex-initial gap-2 relative"
       key={params.toString()}>
       <label htmlFor="sort" className="hidden lg:inline-block">
-        Sort
+        Sortiranje
       </label>
       <select
         name="sort"
@@ -27,10 +27,10 @@ const Sort = () => {
           setValue(e.target.value);
           e.target.form?.requestSubmit();
         }}>
-        <option value="newest">Newest</option>
-        <option value="oldest">Oldest</option>
-        <option value="price-asc">Price asc</option>
-        <option value="price-dsc">Price dsc</option>
+        <option value="newest">Najnovije</option>
+        <option value="oldest">Najstarije</option>
+        <option value="price-asc">Cena rastuće</option>
+        <option value="price-dsc">Cena opadajuće</option>
       </select>
       <FontAwesomeIcon
         icon={faChevronDown}

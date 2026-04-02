@@ -13,7 +13,7 @@ const SearchForm = () => {
         <input
           type="text"
           name="query"
-          placeholder="Search"
+          placeholder="Pretraga"
           className="w-full h-full focus:outline-none placeholder:text-black"
         />
       </div>

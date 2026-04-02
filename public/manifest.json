@@ -1,0 +1,16 @@
+{
+  "name": "SecondBook",
+  "short_name": "SecondBook",
+  "description": "Platforma za kupovinu i prodaju polovnih školskih udžbenika u Beogradu",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#385572",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

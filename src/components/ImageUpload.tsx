@@ -17,13 +17,13 @@ export default function ImageUpload({ name, onChange }: ImageUploadProps) {
     if (file) {
       // Validate file type
       if (!file.type.startsWith('image/')) {
-        alert('Please select an image file');
+        alert('Izaberite fajl sa slikom');
         return;
       }
       
       // Validate file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
-        alert('Image size should be less than 5MB');
+        alert('Slika mora biti manja od 5MB');
         return;
       }
       
@@ -49,7 +49,7 @@ export default function ImageUpload({ name, onChange }: ImageUploadProps) {
       
       {preview ? (
         <div className="relative w-48 h-48">
-          <Image src={preview} alt="Preview" fill className="object-cover rounded" />
+          <Image src={preview} alt="Pregled slike" fill className="object-cover rounded" />
           <button
             type="button"
             onClick={() => {
@@ -68,7 +68,7 @@ export default function ImageUpload({ name, onChange }: ImageUploadProps) {
           onClick={() => inputRef.current?.click()}
           className="w-48 h-48 border-2 border-dashed rounded flex items-center justify-center text-gray-400 hover:border-gray-500"
         >
-          Click to upload
+          Kliknite za otpremanje
         </button>
       )}
     </div>

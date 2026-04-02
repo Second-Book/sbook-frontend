@@ -106,7 +106,7 @@ function MessagesContent() {
         <ChatWindow username={activeChat} />
       ) : (
         <div className="flex-1 flex items-center justify-center text-gray-500">
-          Select a conversation
+          Izaberite razgovor
         </div>
       )}
     </section>
@@ -118,7 +118,7 @@ export default function Messages() {
     <Suspense
       fallback={
         <section className="w-full h-[600px] bg-white rounded-xl shadow-md border flex items-center justify-center text-gray-500">
-          Loading messages...
+          Učitavanje poruka...
         </section>
       }
     >

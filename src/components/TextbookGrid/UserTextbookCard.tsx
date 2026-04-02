@@ -17,15 +17,15 @@ const UserTextbookCard = (props: UserTextbookCardProps) => {
   const router = useRouter();
   
   const handleDelete = async () => {
-    if (!confirm("Are you sure you want to delete this listing?")) return;
+    if (!confirm("Da li ste sigurni da želite da obrišete ovaj oglas?")) return;
     
     setIsDeleting(true);
     try {
       await TextbookService.deleteTextbook(String(props.textbook.id));
-      toast.success('Textbook deleted successfully!');
+      toast.success('Oglas je uspešno obrisan!');
       router.refresh();
     } catch (error) {
-      toast.error('Failed to delete listing. Please try again.');
+      toast.error('Greška pri brisanju oglasa. Pokušajte ponovo.');
     } finally {
       setIsDeleting(false);
     }
@@ -36,11 +36,11 @@ const UserTextbookCard = (props: UserTextbookCardProps) => {
       <div className="flex justify-between items-start">
         <div>
           <h4 className="font-medium text-lg">{props.textbook.title}</h4>
-          <p className="text-gray-600">Author: {props.textbook.author}</p>
-          <p className="text-gray-600">Grade: {props.textbook.school_class}</p>
-          <p className="text-gray-600">Price: ${props.textbook.price}</p>
+          <p className="text-gray-600">Autor: {props.textbook.author}</p>
+          <p className="text-gray-600">Razred: {props.textbook.school_class}</p>
+          <p className="text-gray-600">Cena: {props.textbook.price} RSD</p>
           <p className="text-sm text-gray-500">
-            Added: {formatDate(props.textbook.created_at)}
+            Dodato: {formatDate(props.textbook.created_at)}
           </p>
         </div>
         <div className="flex space-x-2">
@@ -48,14 +48,14 @@ const UserTextbookCard = (props: UserTextbookCardProps) => {
             href={`/profile/edit-listing/${props.textbook.id}`}
             className="px-3 py-1 text-blue-600 hover:bg-blue-50 rounded"
           >
-            Edit
+            Izmeni
           </Link>
           <button
             onClick={handleDelete}
             disabled={isDeleting}
             className="px-3 py-1 text-red-600 hover:bg-red-50 rounded disabled:opacity-50"
           >
-            {isDeleting ? "Deleting..." : "Delete"}
+            {isDeleting ? "Brisanje..." : "Obriši"}
           </button>
         </div>
       </div>

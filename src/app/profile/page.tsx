@@ -26,26 +26,26 @@ const ProfilePage = () => {
   }, [router]);
 
   if (!isHydrated) {
-    return <div className="p-6 text-(--cool-gray-60)">Loading...</div>;
+    return <div className="p-6 text-(--cool-gray-60)">Učitavanje...</div>;
   }
 
   if (!user) {
     return (
       <div className="w-full flex flex-col items-center gap-4 p-8">
-        <p className="text-(--cool-gray-60)">Sign in to view your profile</p>
+        <p className="text-(--cool-gray-60)">Prijavite se da vidite profil</p>
         <Link
           href="/login"
           className="px-8 py-2 bg-black text-white text-center rounded-md">
-          Sign In
+          Prijava
         </Link>
       </div>
     );
   }
 
   const navItems = [
-    { href: "/profile/my-listings", icon: faBook, label: "My listings" },
-    { href: "/profile/messages", icon: faMessage, label: "Messages" },
-    { href: "/profile/saved-items", icon: faHeart, label: "Saved items" },
+    { href: "/profile/my-listings", icon: faBook, label: "Moji oglasi" },
+    { href: "/profile/messages", icon: faMessage, label: "Poruke" },
+    { href: "/profile/saved-items", icon: faHeart, label: "Sačuvano" },
   ];
 
   return (
@@ -56,7 +56,7 @@ const ProfilePage = () => {
           <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0">
             <Image
               src="/user-placeholder.jpg"
-              alt="Profile picture"
+              alt="Profilna slika"
               width={200}
               height={200}
               priority
@@ -70,7 +70,7 @@ const ProfilePage = () => {
         <Link
           href="/profile/edit"
           className="mt-4 block w-full py-2 bg-black text-white text-center rounded-md">
-          Edit Profile
+          Uredi profil
         </Link>
       </div>
 

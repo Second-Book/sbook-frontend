@@ -20,12 +20,12 @@ export default function ChatSidebar({
   return (
     <div className="w-64 border-r overflow-y-auto">
       <div className="p-4 border-b">
-        <h3 className="font-bold text-lg">Conversations</h3>
+        <h3 className="font-bold text-lg">Razgovori</h3>
       </div>
       <div>
         {conversations.length === 0 ? (
           <div className="p-4 text-gray-500 text-center">
-            No conversations yet
+            Nema razgovora
           </div>
         ) : (
           conversations.map((conv) => (

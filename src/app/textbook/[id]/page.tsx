@@ -43,18 +43,18 @@ export default async function TextbookDetail({
             </div>
             
             <div className="space-y-2">
-              <p><strong>Grade:</strong> {textbook.school_class}</p>
-              <p><strong>Publisher:</strong> {textbook.publisher}</p>
-              <p><strong>Subject:</strong> {textbook.subject}</p>
+              <p><strong>Razred:</strong> {textbook.school_class}</p>
+              <p><strong>Izdavač:</strong> {textbook.publisher}</p>
+              <p><strong>Predmet:</strong> {textbook.subject}</p>
             </div>
             
             <div>
-              <h3 className="font-bold mb-2">Description</h3>
+              <h3 className="font-bold mb-2">Opis</h3>
               <p className="text-gray-700">{textbook.description}</p>
             </div>
             
             <div className="border-t pt-6">
-              <h3 className="font-bold mb-4">Contact Seller</h3>
+              <h3 className="font-bold mb-4">Kontaktirajte prodavca</h3>
               <div className="flex flex-wrap gap-3">
                 <ContactButtons textbook={textbook} />
                 <MessageSellerButton seller={textbook.seller} />
