@@ -18,12 +18,15 @@ ssh ${SSH_USER}@${SSH_HOST} << ENDSSH
   mkdir -p \${FRONTEND_PATH}/logs
 ENDSSH
 
+# Remove old .next build to avoid stale cache conflicts
+echo "Cleaning old build artifacts..."
+ssh ${SSH_USER}@${SSH_HOST} "rm -rf ${FRONTEND_PATH}/.next"
+
 # Copy built application
 echo "Copying application files..."
 rsync -avz --delete \
   --exclude='.git' \
   --exclude='node_modules' \
-  --exclude='.next/cache' \
   --exclude='.env' \
   --exclude='logs' \
   --exclude='*.log' \
