@@ -3,6 +3,7 @@ import TextbookService from "@/services/TextbookService";
 import ContactButtons from "@/components/ContactButtons";
 import MessageSellerButton from "@/components/MessageSellerButton";
 import WishlistButton from "@/components/WishlistButton";
+import { getConditionLabel } from "@/utils/conditionLabels";
 
 export default async function TextbookDetail({ 
   params 
@@ -32,7 +33,7 @@ export default async function TextbookDetail({
           <div className="space-y-6">
             <div>
               <span className="px-3 py-1 bg-gray-200 rounded text-sm">
-                {textbook.condition}
+                {getConditionLabel(textbook.condition)}
               </span>
               <h1 className="text-3xl font-bold mt-2">{textbook.title}</h1>
               <p className="text-gray-600">{textbook.author}</p>

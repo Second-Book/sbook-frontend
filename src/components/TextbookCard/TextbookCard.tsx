@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { TextbookType } from "@/utils/types";
+import { getConditionLabel } from "@/utils/conditionLabels";
 
 interface TextbookCardProps {
   textbook: TextbookType;
@@ -24,7 +25,7 @@ const TextbookCard = ({ textbook, index }: TextbookCardProps) => {
       <div className="flex flex-col px-4 py-6 gap-4">
         <div className="w-full flex justify-between items-center flex-wrap gap-y-1">
           <p className="p-1 text-sm w-fit font-bold text-white rounded-sm bg-[#D3D3D3]">
-            {textbook.condition}
+            {getConditionLabel(textbook.condition)}
           </p>
           <h3 className="text-lg md:text-2xl font-bold">{textbook.price}</h3>
         </div>
